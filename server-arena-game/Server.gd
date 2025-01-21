@@ -4,12 +4,14 @@ var map  = preload("res://Scenes/Map.tscn")
 var player_scene = preload("res://Scenes/player.tscn")
 var m
 var player_spawn_pos = Vector2(200,200)
+var goal_scene = preload("res://Scenes/goal.tscn")
 
 var connected_players = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setup_shit()
+	spawn_elements()
 
 
 func setup_shit() -> void:
@@ -25,6 +27,25 @@ func setup_shit() -> void:
 	print("Server created.")
 	StartGame()
 	print("Game started.")
+
+func spawn_elements():
+	var goal
+	# spawn goal 1
+	goal = goal_scene.instantiate()
+	goal.goal_number = 1
+	for c in get_children():
+		if(c.name=="Map"):
+			c.add_child(goal)
+			goal.position = c.get_node("SpawnLocations").get_node("goal1").global_position
+	# spawn goal 2
+	goal = goal_scene.instantiate()
+	goal.goal_number = 2
+	for c in get_children():
+		if(c.name=="Map"):
+			c.add_child(goal)
+			goal.position = c.get_node("SpawnLocations").get_node("goal2").global_position
+	goal.rotation = 0
+	
 
 func StartGame():
 	m = map.instantiate()
@@ -96,3 +117,8 @@ func update_other_player_details(connected_players):
 @rpc
 func update_ball_pos(pos, rot):
 	pass
+
+@rpc("authority", "call_local", "reliable")
+func goal_scored(goal_no):
+	goal_no-=1
+	print('goal scored in players '+str(connected_players[goal_no])+' goal')

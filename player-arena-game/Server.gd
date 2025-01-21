@@ -4,11 +4,12 @@ var ball_scene = preload("res://Scenes/ball.tscn")
 var player = preload("res://Scenes/player.tscn")
 var other_player = preload("res://Scenes/other_player.tscn")
 var player_s_pos = Vector2.ZERO
+var goal_scene = preload("res://Scenes/goal.tscn")
 
 var other_player_id
 
 func _ready() -> void:
-	Global.init_globals()
+	spawn_elements()
 	
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
@@ -18,6 +19,10 @@ func _ready() -> void:
 	Nodes.add_child(ball)
 	ball.position = Vector2(540, 1200)
 
+func spawn_elements():
+	# spawn goals
+	Global.instance_node(goal_scene, Nodes, Global.GOAL_1_SPAWN_POINT, deg_to_rad(180))
+	Global.instance_node(goal_scene, Nodes, Global.GOAL_2_SPAWN_POINT)
 
 func join_server():
 	var client = ENetMultiplayerPeer.new()
@@ -92,4 +97,8 @@ func get_player_s_pos(id):
 
 @rpc
 func get_ball_pos():
+	pass
+
+@rpc
+func goal_scored(scorer_id):
 	pass

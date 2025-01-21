@@ -57,3 +57,11 @@ texture = ExtResource("2_u4u6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
 shape = SubResource("CircleShape2D_lthat")
+
+[node name="SpawnLocations" type="Node2D" parent="."]
+
+[node name="goal1" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(536, 152)
+
+[node name="goal2" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(536, 2200)
