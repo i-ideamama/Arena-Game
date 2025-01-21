@@ -70,22 +70,29 @@ func apply_impulse_on_player_s(id, force):
 
 @rpc("any_peer", "call_remote", "unreliable")
 func get_player_s_pos(id):
-	rpc_id(id, "update_player_pos", id, m.get_node(str(id)).global_position)
+	rpc_id(id, "update_player_pos", id, m.get_node(str(id)).global_position, m.get_node(str(id)).rotation)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func get_other_player_s_pos(id, other_id):
 	if(m.get_node_or_null(str(other_id))!=null):
-		rpc_id(id, "update_other_player_pos", m.get_node(str(other_id)).global_position)
-		
+		rpc_id(id, "update_other_player_pos", m.get_node(str(other_id)).global_position, m.get_node(str(other_id)).rotation)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func get_ball_pos():
+	rpc("update_ball_pos", m.get_node("ball").global_position, m.get_node("ball").rotation)
 
 @rpc
-func update_player_pos(id, pos):
+func update_player_pos(id, pos, rot):
 	pass
 
 @rpc
-func update_other_player_pos(pos):
+func update_other_player_pos(pos, rot):
 	pass
 
 @rpc
 func update_other_player_details(connected_players):
+	pass
+
+@rpc
+func update_ball_pos(pos, rot):
 	pass
