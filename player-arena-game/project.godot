@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Player-Arena Game"
+run/main_scene="res://Scenes/Lobby.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,3 +20,10 @@ config/icon="res://icon.svg"
 Server="*res://Server.gd"
 Global="*res://global.gd"
 Nodes="*res://nodes.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=2400
+window/stretch/mode="viewport"
+window/handheld/orientation=1

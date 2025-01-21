@@ -1,32 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://pwry7tr3bkos"]
+[gd_scene load_steps=4 format=3 uid="uid://pwry7tr3bkos"]
+
+[ext_resource type="Texture2D" uid="uid://cshlyns7fdyvu" path="res://Assets/football-pitch.png" id="1_wdjoj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bmat"]
-size = Vector2(750, 20)
+size = Vector2(1096, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omqvn"]
+size = Vector2(22, 2408)
 
 [node name="Map" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(540, 1204)
+scale = Vector2(1.35, 2.36)
+texture = ExtResource("1_wdjoj")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(390, 18)
+position = Vector2(544, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4, -3)
 shape = SubResource("RectangleShape2D_0bmat")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(390, 628)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(154, 1764)
 shape = SubResource("RectangleShape2D_0bmat")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(21, 342)
-rotation = 1.5708
+position = Vector2(16, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource("RectangleShape2D_0bmat")
+position = Vector2(-21, 1204)
+shape = SubResource("RectangleShape2D_omqvn")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(770, 338)
-rotation = 1.5708
+position = Vector2(1104, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource("RectangleShape2D_0bmat")
+position = Vector2(-21, 1204)
+shape = SubResource("RectangleShape2D_omqvn")

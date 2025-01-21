@@ -4,7 +4,7 @@ var mouse_in_area := false
 var initial_pos = null
 var currently_aiming := false
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	Server.rpc_id(1, "get_player_s_pos", multiplayer.get_unique_id())
 	#print(Server.other_player_id)
 	Server.rpc_id(1, "get_other_player_s_pos", multiplayer.get_unique_id() ,Server.other_player_id)
