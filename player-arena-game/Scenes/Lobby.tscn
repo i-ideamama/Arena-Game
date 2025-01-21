@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwsf0dhtjb1l3"]
+
+[ext_resource type="Script" path="res://Scripts/lobby.gd" id="1_jald8"]
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_jald8")
+
+[node name="Join" type="Button" parent="."]
+offset_left = 322.0
+offset_top = 180.0
+offset_right = 455.0
+offset_bottom = 231.0
+text = "JOIN"
+
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]

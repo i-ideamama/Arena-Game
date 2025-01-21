@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq58s5u6eye3l"]
+
+[ext_resource type="Texture2D" uid="uid://c5bc6x3th5bfv" path="res://icon.svg" id="1_jqvkv"]
+[ext_resource type="Texture2D" uid="uid://ckvk8gptmouyc" path="res://Assets/football1.png" id="2_3alfn"]
+
+[node name="OtherPlayer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.621007, 0.562436, 1, 1)
+texture = ExtResource("1_jqvkv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_3alfn")
