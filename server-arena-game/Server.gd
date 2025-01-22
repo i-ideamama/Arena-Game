@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func setup_shit() -> void:
 	var server = ENetMultiplayerPeer.new()
-	var err = server.create_server(4243)
+	var err = server.create_server(4242)
 	if err != OK:
 		print("Error starting server.")
 		return
@@ -32,7 +32,7 @@ func spawn_elements():
 	var goal
 	# spawn goal 1
 	goal = goal_scene.instantiate()
-	goal.goal_number = 1
+	goal.goal_number = 14
 	for c in get_children():
 		if(c.name=="Map"):
 			c.add_child(goal)
@@ -77,13 +77,6 @@ func _on_player_disconnected(id):
 	for c in connected_players:
 		rpc_id(int(c), "update_other_player_details", connected_players)
 
-@rpc
-func instance_player(id, location):
-	pass
-
-@rpc
-func delete_obj(id):
-	pass
 
 @rpc("any_peer", "call_remote", "reliable")
 func apply_impulse_on_player_s(id, force):
@@ -102,6 +95,38 @@ func get_other_player_s_pos(id, other_id):
 func get_ball_pos():
 	rpc("update_ball_pos", m.get_node("ball").global_position, m.get_node("ball").rotation)
 
+
+
+@rpc("authority", "call_local", "reliable")
+func goal_scored(goal_no):
+	goal_no-=1
+	print('goal scored in players '+str(connected_players[goal_no])+' goal')
+
+## ABILITIES
+@rpc("authority", "call_local", "reliable")
+func change_player_stat_s(id, stat):
+	if(stat==0):
+		print('speed')
+		m.get_node(str(id)).mass = Global.PUP_PLAYER_MASS
+	elif(stat==1):
+		var new_scale = Vector2(Global.PUP_PLAYER_SCALE,Global.PUP_PLAYER_SCALE)
+		m.get_node(str(id)).get_node("CollisionShape2D").scale = new_scale
+		print('size')
+	rpc_id(int(id), "change_player_stat", stat)
+	
+
+
+func _on_timeout():
+	queue_free()
+
+@rpc()
+func reset_stats(id):
+	pass
+
+@rpc
+func change_player_stat(id, stat):
+	pass
+
 @rpc
 func update_player_pos(id, pos, rot):
 	pass
@@ -118,7 +143,10 @@ func update_other_player_details(connected_players):
 func update_ball_pos(pos, rot):
 	pass
 
-@rpc("authority", "call_local", "reliable")
-func goal_scored(goal_no):
-	goal_no-=1
-	print('goal scored in players '+str(connected_players[goal_no])+' goal')
+@rpc
+func instance_player(id, location):
+	pass
+
+@rpc
+func delete_obj(id):
+	pass

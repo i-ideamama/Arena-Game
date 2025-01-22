@@ -26,7 +26,7 @@ func spawn_elements():
 
 func join_server():
 	var client = ENetMultiplayerPeer.new()
-	var err = client.create_client("127.0.0.1", 4243)
+	var err = client.create_client("127.0.0.1", 4242)
 	if(err!=OK):
 		print("Unable to connect to server.")
 		return
@@ -81,7 +81,26 @@ func update_other_player_details(connected_players):
 func update_ball_pos(pos, rot):
 	Nodes.get_node("ball").position = pos
 	Nodes.get_node("ball").rotation = rot
-	
+
+@rpc("authority", "call_remote", "reliable")
+func change_player_stat(stat):
+	var size_timer: Timer = Timer.new()
+	add_child(size_timer)
+	size_timer.wait_time = Global.POWERUP_TIMER_TIMEOUT
+	size_timer.one_shot = true
+	size_timer.timeout.connect(_on_powerup_timer_timeout)
+	size_timer.start()
+	print(stat)
+	if(stat == 0):
+		print('going to change speed')
+	elif(stat == 1):
+		print('going to change size')
+
+func _on_powerup_timer_timeout():
+	reset_player_stats()
+
+func reset_player_stats():
+	pass
 
 @rpc
 func apply_impulse_on_player_s(id, force):
@@ -101,4 +120,12 @@ func get_ball_pos():
 
 @rpc
 func goal_scored(scorer_id):
+	pass
+
+@rpc
+func change_player_stat_s(id, stat):
+	pass
+
+@rpc()
+func reset_stats(id):
 	pass

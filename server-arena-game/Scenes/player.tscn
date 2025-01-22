@@ -4,6 +4,7 @@
 size = Vector2(128, 128)
 
 [node name="Player1" type="RigidBody2D" groups=["player"]]
+mass = 2.0
 gravity_scale = 0.0
 metadata/_edit_horizontal_guides_ = [-75.0]
 
