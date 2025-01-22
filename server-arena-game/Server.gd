@@ -1,5 +1,9 @@
 extends Node
 
+
+const PORT = Global.PORT
+const DEFAULT_SERVER_IP = Global.SERVER_IP
+
 var map  = preload("res://Scenes/Map.tscn")
 var player_scene = preload("res://Scenes/player.tscn")
 var m
@@ -14,11 +18,11 @@ func _ready() -> void:
 	spawn_elements()
 
 
-func setup_shit() -> void:
-	var server = ENetMultiplayerPeer.new()
-	var err = server.create_server(4242)
+func setup_shit() -> void:	
+	var server = WebSocketMultiplayerPeer.new()
+	var err = server.create_server(PORT, "*")
 	if err != OK:
-		print("Error starting server.")
+		print("Cannot host " + str(err))
 		return
 	
 	multiplayer.multiplayer_peer = server

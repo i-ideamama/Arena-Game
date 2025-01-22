@@ -1,5 +1,8 @@
 extends Node
 
+const PORT = Global.PORT
+const DEFAULT_SERVER_IP = Global.SERVER_IP
+
 var ball_scene = preload("res://Scenes/ball.tscn")
 var player = preload("res://Scenes/player.tscn")
 var other_player = preload("res://Scenes/other_player.tscn")
@@ -25,11 +28,11 @@ func spawn_elements():
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_2_SPAWN_POINT)
 
 func join_server():
-	var client = ENetMultiplayerPeer.new()
-	var err = client.create_client("127.0.0.1", 4242)
-	if(err!=OK):
-		print("Unable to connect to server.")
-		return
+	var client = WebSocketMultiplayerPeer.new()
+	var address = ""
+	if address.is_empty():
+		address = DEFAULT_SERVER_IP
+	client.create_client("ws://" + address + ":" + str(PORT))
 	multiplayer.multiplayer_peer = client
 
 func _on_connected_ok():
@@ -92,9 +95,9 @@ func change_player_stat(stat):
 	size_timer.start()
 	print(stat)
 	if(stat == 0):
-		print('going to change speed')
+		pass
 	elif(stat == 1):
-		print('going to change size')
+		Nodes.get_node("Player").scale = Global.PUP_PLAYER_SCALE
 
 func _on_powerup_timer_timeout():
 	reset_player_stats()
