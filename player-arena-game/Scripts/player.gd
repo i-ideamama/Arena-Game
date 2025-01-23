@@ -33,3 +33,14 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	mouse_in_area = false
+
+
+func _on_speed_timer_timeout() -> void:
+	print('speed timer timeout')
+	Server.rpc("reset_player_stat",multiplayer.get_unique_id(),0)
+	$SpeedTimer.stop()
+
+func _on_size_timer_timeout() -> void:
+	print('size timer timeout')
+	Server.rpc("reset_player_stat",multiplayer.get_unique_id(),1)
+	$SizeTimer.stop()

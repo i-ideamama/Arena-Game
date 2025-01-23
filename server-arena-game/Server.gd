@@ -18,7 +18,7 @@ func _ready() -> void:
 	spawn_elements()
 
 
-func setup_shit() -> void:	
+func setup_shit() -> void:
 	var server = WebSocketMultiplayerPeer.new()
 	var err = server.create_server(PORT, "*")
 	if err != OK:
@@ -36,7 +36,7 @@ func spawn_elements():
 	var goal
 	# spawn goal 1
 	goal = goal_scene.instantiate()
-	goal.goal_number = 14
+	goal.goal_number = 1
 	for c in get_children():
 		if(c.name=="Map"):
 			c.add_child(goal)
@@ -110,22 +110,23 @@ func goal_scored(goal_no):
 @rpc("authority", "call_local", "reliable")
 func change_player_stat_s(id, stat):
 	if(stat==0):
-		print('speed')
 		m.get_node(str(id)).mass = Global.PUP_PLAYER_MASS
 	elif(stat==1):
 		var new_scale = Vector2(Global.PUP_PLAYER_SCALE,Global.PUP_PLAYER_SCALE)
 		m.get_node(str(id)).get_node("CollisionShape2D").scale = new_scale
-		print('size')
-	rpc_id(int(id), "change_player_stat", stat)
+	rpc("change_player_stat", id, stat)
 	
+@rpc("any_peer","call_remote","reliable")
+func reset_player_stat_s(id, stat):
+	if(stat==0):
+		m.get_node(str(id)).mass = Global.DEFAULT_PLAYER_MASS
+	elif(stat==1):
+		var new_scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
+		m.get_node(str(id)).get_node("CollisionShape2D").scale = new_scale
 
 
 func _on_timeout():
 	queue_free()
-
-@rpc()
-func reset_stats(id):
-	pass
 
 @rpc
 func change_player_stat(id, stat):
@@ -153,4 +154,8 @@ func instance_player(id, location):
 
 @rpc
 func delete_obj(id):
+	pass
+
+@rpc
+func reset_player_stat(stat):
 	pass

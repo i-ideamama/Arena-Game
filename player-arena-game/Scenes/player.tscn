@@ -9,6 +9,12 @@ size = Vector2(128, 128)
 [node name="Player" type="Node2D"]
 script = ExtResource("1_w683w")
 
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="SizeTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_13yev")
 
@@ -17,5 +23,7 @@ texture = ExtResource("1_13yev")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_tsfg5")
 
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[connection signal="timeout" from="SizeTimer" to="." method="_on_size_timer_timeout"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

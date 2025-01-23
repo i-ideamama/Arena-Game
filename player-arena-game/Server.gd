@@ -86,25 +86,30 @@ func update_ball_pos(pos, rot):
 	Nodes.get_node("ball").rotation = rot
 
 @rpc("authority", "call_remote", "reliable")
-func change_player_stat(stat):
-	var size_timer: Timer = Timer.new()
-	add_child(size_timer)
-	size_timer.wait_time = Global.POWERUP_TIMER_TIMEOUT
-	size_timer.one_shot = true
-	size_timer.timeout.connect(_on_powerup_timer_timeout)
-	size_timer.start()
-	print(stat)
+func change_player_stat(id, stat):
+	if(stat == 0):
+		if(int(id)==int(multiplayer.get_unique_id())):
+			Nodes.get_node(str(multiplayer.get_unique_id())).get_node("SpeedTimer").start()
+	elif(stat == 1):
+		if(int(id)==int(multiplayer.get_unique_id())):
+			Nodes.get_node(str(multiplayer.get_unique_id())).get_node("SizeTimer").start()
+			Nodes.get_node(str(multiplayer.get_unique_id())).scale = Vector2(Global.PUP_PLAYER_SCALE,Global.PUP_PLAYER_SCALE)
+		else:
+			Nodes.get_node(str(other_player_id)).scale = Vector2(Global.PUP_PLAYER_SCALE,Global.PUP_PLAYER_SCALE)
+
+
+@rpc("any_peer","call_local","reliable")
+func reset_player_stat(id, stat):
+	rpc_id(1, "reset_player_stat_s", multiplayer.get_unique_id(), stat)
 	if(stat == 0):
 		pass
 	elif(stat == 1):
-		Nodes.get_node("Player").scale = Global.PUP_PLAYER_SCALE
-
-func _on_powerup_timer_timeout():
-	reset_player_stats()
-
-func reset_player_stats():
-	pass
-
+		if(id==multiplayer.get_unique_id()):
+			Nodes.get_node(str(multiplayer.get_unique_id())).scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
+		else:
+			Nodes.get_node(str(other_player_id)).scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
+		
+		
 @rpc
 func apply_impulse_on_player_s(id, force):
 	pass
@@ -129,6 +134,6 @@ func goal_scored(scorer_id):
 func change_player_stat_s(id, stat):
 	pass
 
-@rpc()
-func reset_stats(id):
+@rpc
+func reset_player_stat_s(id, stat):
 	pass
