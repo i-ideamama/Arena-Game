@@ -58,8 +58,14 @@ func StartGame():
 
 func _on_player_connected(id):
 	print("Player connected " + str(id))
+	for c in get_children():
+		if(c.name=="Map"):
+			if(connected_players.size()<1):
+				player_spawn_pos = c.get_node("SpawnLocations").get_node("1").global_position
+			else:
+				player_spawn_pos = c.get_node("SpawnLocations").get_node("2").global_position
 	rpc_id(0, "instance_player", id, player_spawn_pos)
-	
+
 	var player = player_scene.instantiate()
 	m.add_child(player)
 	player.position = player_spawn_pos

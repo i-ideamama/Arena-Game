@@ -67,5 +67,11 @@ position = Vector2(536, 152)
 [node name="goal2" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(536, 2200)
 
+[node name="1" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(560, 1848)
+
+[node name="2" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(544, 408)
+
 [node name="orb" parent="." instance=ExtResource("3_i07da")]
 position = Vector2(776, 848)
