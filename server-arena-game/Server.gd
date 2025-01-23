@@ -112,7 +112,16 @@ func goal_scored(goal_no):
 	goal_no-=1
 	print('goal scored in players '+str(connected_players[goal_no])+' goal')
 	rpc("update_score_display", connected_players[goal_no])
+	reset_positions()
 
+func reset_positions():
+	print("faadsa")
+	#for c in get_children():
+	#	if(c.name=="Map"):
+	m.get_node(str(connected_players[0])).global_position = m.get_node("SpawnLocations").get_node("1").global_position
+	m.get_node(str(connected_players[1])).global_position = m.get_node("SpawnLocations").get_node("2").global_position
+	m.get_node("ball").global_position = Vector2(540,1200)
+	
 
 ## ABILITIES
 @rpc("authority", "call_local", "reliable")
