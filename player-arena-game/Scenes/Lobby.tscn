@@ -27,4 +27,36 @@ position = Vector2(544, 83)
 [node name="2" type="Marker2D" parent="GoalSpawns"]
 position = Vector2(547, 2333)
 
+[node name="OwnScore" type="RichTextLabel" parent="."]
+offset_left = 306.0
+offset_top = 60.0
+offset_right = 581.0
+offset_bottom = 209.0
+theme_override_font_sizes/normal_font_size = 50
+text = "0"
+
+[node name="OwnScoreLabel" type="RichTextLabel" parent="."]
+offset_left = 30.0
+offset_top = 60.0
+offset_right = 305.0
+offset_bottom = 209.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Own Score:"
+
+[node name="OppScore" type="RichTextLabel" parent="."]
+offset_left = 942.0
+offset_top = 58.0
+offset_right = 1206.0
+offset_bottom = 198.0
+theme_override_font_sizes/normal_font_size = 50
+text = "0"
+
+[node name="OppScoreLabel" type="RichTextLabel" parent="."]
+offset_left = 673.0
+offset_top = 54.0
+offset_right = 937.0
+offset_bottom = 194.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Opp Score:"
+
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]

@@ -105,6 +105,8 @@ func get_ball_pos():
 func goal_scored(goal_no):
 	goal_no-=1
 	print('goal scored in players '+str(connected_players[goal_no])+' goal')
+	rpc("update_score_display", connected_players[goal_no])
+
 
 ## ABILITIES
 @rpc("authority", "call_local", "reliable")
@@ -158,4 +160,8 @@ func delete_obj(id):
 
 @rpc
 func reset_player_stat(stat):
+	pass
+
+@rpc
+func update_score_display(scorer_id):
 	pass

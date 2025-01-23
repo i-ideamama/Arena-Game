@@ -108,8 +108,15 @@ func reset_player_stat(id, stat):
 			Nodes.get_node(str(multiplayer.get_unique_id())).scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
 		else:
 			Nodes.get_node(str(other_player_id)).scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
-		
-		
+
+@rpc("authority","call_remote","reliable")
+func update_score_display(scorer_id):
+	if(int(scorer_id)==multiplayer.get_unique_id()):
+		get_parent().get_node("Lobby").get_node("OwnScore").text = str(int(get_parent().get_node("Lobby").get_node("OwnScore").text)+1)
+	else:
+		get_parent().get_node("Lobby").get_node("OppScore").text = str(int(get_parent().get_node("Lobby").get_node("OppScore").text)+1)
+	
+
 @rpc
 func apply_impulse_on_player_s(id, force):
 	pass
