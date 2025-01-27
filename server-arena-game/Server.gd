@@ -18,19 +18,26 @@ func _ready() -> void:
 	spawn_elements()
 
 
-func setup_shit() -> void:
+func setup_shit():
 	var server = WebSocketMultiplayerPeer.new()
-	var err = server.create_server(PORT, "*")
-	if err != OK:
-		print("Cannot host " + str(err))
-		return
-	
+	var error
+	if Global.USE_SSL:
+		var priv := load(Global.PRIVATE_KEY_PATH)
+		var cert := load(Global.TRUSTED_CHAIN_PATH)
+		var tlsOptions = TLSOptions.server(priv, cert)
+		error = server.create_server(PORT, "*", tlsOptions)
+	else:
+		error = server.create_server(PORT, "*")
+	if error:
+		return error
 	multiplayer.multiplayer_peer = server
+
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	print("Server created.")
 	StartGame()
 	print("Game started.")
+
 
 func spawn_elements():
 	var goal

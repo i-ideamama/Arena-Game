@@ -6,6 +6,7 @@ const USE_SSL := false # put certs in assets/certs, a free let's encrypt one wor
 const TRUSTED_CHAIN_PATH := ""
 const PRIVATE_KEY_PATH := ""
 
+
 const DEFAULT_PLAYER_MASS = 2
 const PUP_PLAYER_MASS = 0.8
 

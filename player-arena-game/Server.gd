@@ -29,11 +29,24 @@ func spawn_elements():
 
 func join_server():
 	var client = WebSocketMultiplayerPeer.new()
-	var address = ""
+	
+	var address
+	# address = "144.24.133.118"
+	address = ""
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
-	client.create_client("ws://" + address + ":" + str(PORT))
+	multiplayer.multiplayer_peer = null
+	var error
+	if Global.USE_SSL:
+		var cert := load(Global.TRUSTED_CHAIN_PATH)
+		var tlsOptions = TLSOptions.client(cert)
+		error = client.create_client("wss://" + address + ":" + str(PORT), tlsOptions)
+	else:
+		error = client.create_client("ws://" + address + ":" + str(PORT))
+	if error:
+		return error
 	multiplayer.multiplayer_peer = client
+	
 
 func _on_connected_ok():
 	print("Connected to server.")
