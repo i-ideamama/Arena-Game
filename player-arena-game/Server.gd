@@ -38,9 +38,12 @@ func join_server():
 	multiplayer.multiplayer_peer = null
 	var error
 	if Global.USE_SSL:
-		var cert := load(Global.TRUSTED_CHAIN_PATH)
+		#var cert := load(Global.z)
+		#var cert = load("res://assets/certs/cacert.crt")
+		var cert = null
 		var tlsOptions = TLSOptions.client(cert)
 		error = client.create_client("wss://" + address + ":" + str(PORT), tlsOptions)
+		print(error)
 	else:
 		error = client.create_client("ws://" + address + ":" + str(PORT))
 	if error:
