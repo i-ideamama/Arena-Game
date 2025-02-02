@@ -1,5 +1,6 @@
 extends Node
 
+const LOBBY_PORT = Global.LOBBY_PORT
 const PORT = Global.PORT
 const DEFAULT_SERVER_IP = Global.SERVER_IP
 
@@ -50,6 +51,26 @@ func join_server():
 		return error
 	multiplayer.multiplayer_peer = client
 	
+
+func join_lobby_manager():
+	var client = WebSocketMultiplayerPeer.new()
+	
+	var address
+	address = ""
+	if address.is_empty():
+		address = DEFAULT_SERVER_IP
+	multiplayer.multiplayer_peer = null
+	var error
+	if Global.USE_SSL:
+		var cert = null
+		var tlsOptions = TLSOptions.client(cert)
+		error = client.create_client("wss://" + address + ":" + str(LOBBY_PORT), tlsOptions)
+		print(error)
+	else:
+		error = client.create_client("ws://" + address + ":" + str(LOBBY_PORT))
+	if error:
+		return error
+	multiplayer.multiplayer_peer = client
 
 func _on_connected_ok():
 	print("Connected to server.")

@@ -13,3 +13,8 @@ config_version=5
 config/name="Lobby Manager"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://global.gd"
+Server="*res://Server.gd"

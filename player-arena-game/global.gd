@@ -2,7 +2,8 @@ extends Node
 
 const SERVER_IP := "localhost"
 const PORT := 8910
-const USE_SSL := true # put certs in assets/certs, a free let's encrypt one works for itch.io
+const LOBBY_PORT := 8911
+const USE_SSL := false # put certs in assets/certs, a free let's encrypt one works for itch.io
 const TRUSTED_CHAIN_PATH := ""
 const PRIVATE_KEY_PATH := ""
 
