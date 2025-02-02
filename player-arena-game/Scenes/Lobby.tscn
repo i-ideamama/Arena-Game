@@ -6,26 +6,6 @@
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_jald8")
 
-[node name="Control" type="Control" parent="."]
-z_index = -100
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 540.0
-offset_top = 1200.0
-offset_right = 540.0
-offset_bottom = 1200.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
-z_index = -100
-scale = Vector2(1.2, 2)
-texture = ExtResource("2_q1abf")
-
 [node name="GoalSpawns" type="Node2D" parent="."]
 
 [node name="1" type="Marker2D" parent="GoalSpawns"]
@@ -45,6 +25,11 @@ offset_right = 540.0
 offset_bottom = 1200.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control2"]
+z_index = -100
+scale = Vector2(1.2, 2)
+texture = ExtResource("2_q1abf")
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Control2"]
 z_index = -80
