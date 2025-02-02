@@ -28,9 +28,16 @@ func spawn_elements():
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_1_SPAWN_POINT, deg_to_rad(180))
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_2_SPAWN_POINT)
 
-func join_server():
-	var client = WebSocketMultiplayerPeer.new()
+func join_server(port=null):
+	print('join server called')
 	
+	
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
+		#reset_networked_nodes()
+		
+	
+	var client = WebSocketMultiplayerPeer.new()
 	var address
 	# address = "144.24.133.118"
 	address = ""
@@ -39,14 +46,18 @@ func join_server():
 	multiplayer.multiplayer_peer = null
 	var error
 	if Global.USE_SSL:
-		#var cert := load(Global.z)
-		#var cert = load("res://assets/certs/cacert.crt")
 		var cert = null
 		var tlsOptions = TLSOptions.client(cert)
-		error = client.create_client("wss://" + address + ":" + str(PORT), tlsOptions)
+		if(port==null):
+			error = client.create_client("wss://" + address + ":" + str(PORT), tlsOptions)
+		else:
+			error = client.create_client("wss://" + address + ":" + str(port), tlsOptions)
 		print(error)
 	else:
-		error = client.create_client("ws://" + address + ":" + str(PORT))
+		if(port==null):
+			error = client.create_client("ws://" + address + ":" + str(PORT))
+		else:
+			error = client.create_client("ws://" + address + ":" + str(port))
 	if error:
 		return error
 	multiplayer.multiplayer_peer = client
@@ -181,3 +192,24 @@ func change_player_stat_s(id, stat):
 @rpc
 func reset_player_stat_s(id, stat):
 	pass
+
+
+
+### STUFF FOR LOBBY MANAGEMENT ###
+
+@rpc
+func remove_from_waiting(id):
+	pass
+
+@rpc("authority", "call_remote", "reliable")
+func player_join_game_at_port(port):
+	await get_tree().create_timer(0.5).timeout
+	switch_to_game_at_port(port)
+
+
+func switch_to_game_at_port(port):
+	var old_id = multiplayer.get_unique_id()
+	rpc_id(0, "remove_from_waiting", old_id)
+	multiplayer.multiplayer_peer = null
+	print('authority = '+str(MultiplayerAPI.RPC_MODE_AUTHORITY))
+	join_server(port)

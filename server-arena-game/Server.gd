@@ -187,3 +187,12 @@ func reset_player_stat(stat):
 @rpc
 func update_score_display(scorer_id):
 	pass
+
+# sdfasdfads
+@rpc
+func remove_from_waiting(id):
+	pass
+
+@rpc
+func player_join_game_at_port(port):
+	pass
