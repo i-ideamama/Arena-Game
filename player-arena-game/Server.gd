@@ -19,6 +19,7 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
+	
 	var ball = ball_scene.instantiate()
 	Nodes.add_child(ball)
 	ball.position = Vector2(540, 1200)
@@ -29,9 +30,6 @@ func spawn_elements():
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_2_SPAWN_POINT)
 
 func join_server(port=null):
-	print('join server called')
-	
-	
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()
 		#reset_networked_nodes()
@@ -160,9 +158,9 @@ func reset_player_stat(id, stat):
 @rpc("authority","call_remote","reliable")
 func update_score_display(scorer_id):
 	if(int(scorer_id)==multiplayer.get_unique_id()):
-		get_parent().get_node("Lobby").get_node("OwnScore").text = str(int(get_parent().get_node("Lobby").get_node("OwnScore").text)+1)
+		get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text)+1)
 	else:
-		get_parent().get_node("Lobby").get_node("OppScore").text = str(int(get_parent().get_node("Lobby").get_node("OppScore").text)+1)
+		get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text)+1)
 	
 
 @rpc
@@ -211,5 +209,4 @@ func switch_to_game_at_port(port):
 	var old_id = multiplayer.get_unique_id()
 	rpc_id(0, "remove_from_waiting", old_id)
 	multiplayer.multiplayer_peer = null
-	print('authority = '+str(MultiplayerAPI.RPC_MODE_AUTHORITY))
 	join_server(port)

@@ -4,6 +4,9 @@ var mouse_in_area := false
 var initial_pos = null
 var currently_aiming := false
 
+func _ready() -> void:
+	self.z_index = 100
+
 func _process(delta: float) -> void:
 	Server.rpc_id(1, "get_player_s_pos", multiplayer.get_unique_id())
 	#print(Server.other_player_id)
@@ -23,12 +26,14 @@ func _input(event):
 					shoot_with_force((initial_pos - get_global_mouse_position()).normalized())
 
 func shoot_with_force(dxn):
+	print('im aljghhdi')
 	var force_mag = 1250
 	# Server.apply_impulse_on_player_s(multiplayer.get_unique_id() ,force_mag*dxn)
 	Server.rpc_id(1, "apply_impulse_on_player_s", multiplayer.get_unique_id(), force_mag*dxn)
 	currently_aiming = false
 
 func _on_area_2d_mouse_entered() -> void:
+	print('aafdafasdfsdfasdfasda')
 	mouse_in_area = true
 
 func _on_area_2d_mouse_exited() -> void:
