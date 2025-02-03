@@ -12,6 +12,8 @@ var goal_scene = preload("res://Scenes/goal.tscn")
 
 var connected_players = []
 
+var ball_reset_position = Global.BALL_RESET_POSITION
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setup_shit()
@@ -119,15 +121,14 @@ func goal_scored(goal_no):
 	goal_no-=1
 	print('goal scored in players '+str(connected_players[goal_no])+' goal')
 	rpc("update_score_display", connected_players[goal_no])
-	#reset_positions()
+	reset_positions()
 
-#func reset_positions():
-#	print("faadsa")
-#	#for c in get_children():
-#	#	if(c.name=="Map"):
-#	m.get_node(str(connected_players[0])).global_position = m.get_node("SpawnLocations").get_node("1").global_position
-#	m.get_node(str(connected_players[1])).global_position = m.get_node("SpawnLocations").get_node("2").global_position
-#	m.get_node("ball").global_position = Vector2(540,1200)
+func reset_positions():
+	for c in get_children():
+		if(c.name=="Map"):
+			c.get_node(str(connected_players[0])).move_body(c.get_node("SpawnLocations").get_node("1").global_position)
+			c.get_node(str(connected_players[1])).move_body(c.get_node("SpawnLocations").get_node("2").global_position)
+			c.get_node("ball").move_body(ball_reset_position)
 
 
 ## ABILITIES

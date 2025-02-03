@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcyek0pfsfpws"]
+[gd_scene load_steps=3 format=3 uid="uid://bcyek0pfsfpws"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_x28ll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqws2"]
 size = Vector2(128, 128)
@@ -6,6 +8,7 @@ size = Vector2(128, 128)
 [node name="Player1" type="RigidBody2D" groups=["player"]]
 mass = 2.0
 gravity_scale = 0.0
+script = ExtResource("1_x28ll")
 metadata/_edit_horizontal_guides_ = [-75.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

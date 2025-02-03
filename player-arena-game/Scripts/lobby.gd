@@ -1,5 +1,5 @@
-extends Node2D
-
+#extends Node2D
+extends Control 
 
 func hide_elements() -> void:
 	$Control2/ButtonContainer.hide()

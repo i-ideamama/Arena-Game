@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/lobby.gd" id="1_jald8"]
 [ext_resource type="Texture2D" uid="uid://dsn1fvpw6n03t" path="res://Assets/football-pitch.png" id="2_q1abf"]
 
-[node name="Lobby" type="Node2D"]
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_jald8")
 
 [node name="GoalSpawns" type="Node2D" parent="."]
@@ -15,21 +17,12 @@ position = Vector2(544, 83)
 position = Vector2(547, 2333)
 
 [node name="Control2" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 540.0
-offset_top = 1200.0
-offset_right = 540.0
-offset_bottom = 1200.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Control2"]
-z_index = -100
-scale = Vector2(1.2, 2)
-texture = ExtResource("2_q1abf")
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Control2"]
 z_index = -80
@@ -106,6 +99,17 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "0"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control2/CenterContainer"]
+z_index = -100
+position = Vector2(540, 1200)
+scale = Vector2(1.2, 2)
+texture = ExtResource("2_q1abf")
 
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/LobbyManagerButton" to="." method="_on_lobby_manager_button_pressed"]

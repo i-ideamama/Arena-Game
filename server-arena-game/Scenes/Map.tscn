@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://pwry7tr3bkos"]
+[gd_scene load_steps=8 format=3 uid="uid://pwry7tr3bkos"]
 
 [ext_resource type="Texture2D" uid="uid://cshlyns7fdyvu" path="res://Assets/football-pitch.png" id="1_wdjoj"]
 [ext_resource type="Texture2D" uid="uid://ktgfcku04sbp" path="res://Assets/football1.png" id="2_u4u6l"]
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="2_y1mf3"]
 [ext_resource type="PackedScene" uid="uid://cc202hecc4dwy" path="res://Scenes/orb.tscn" id="3_i07da"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bmat"]
@@ -52,6 +53,7 @@ shape = SubResource("RectangleShape2D_omqvn")
 position = Vector2(540, 1200)
 mass = 0.5
 gravity_scale = 0.0
+script = ExtResource("2_y1mf3")
 
 [node name="Sprite2D" type="Sprite2D" parent="ball"]
 texture = ExtResource("2_u4u6l")
