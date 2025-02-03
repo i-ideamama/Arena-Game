@@ -149,9 +149,17 @@ func reset_player_stat_s(id, stat):
 		var new_scale = Vector2(Global.DEFAULT_PLAYER_SCALE,Global.DEFAULT_PLAYER_SCALE)
 		m.get_node(str(id)).get_node("CollisionShape2D").scale = new_scale
 
+@rpc("authority","call_local","reliable")
+func send_update_to_player_timer():
+	rpc_id(0,"update_player_timer")
+	
 
 func _on_timeout():
 	queue_free()
+
+@rpc()
+func update_player_timer():
+	pass
 
 @rpc
 func change_player_stat(id, stat):
@@ -188,6 +196,8 @@ func reset_player_stat(stat):
 @rpc
 func update_score_display(scorer_id):
 	pass
+
+
 
 # sdfasdfads
 @rpc

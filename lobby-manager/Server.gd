@@ -114,3 +114,11 @@ func change_player_stat_s(id, stat):
 @rpc
 func reset_player_stat_s(id, stat):
 	pass
+
+@rpc
+func send_update_to_player_timer():
+	pass
+
+@rpc
+func update_player_timer():
+	pass

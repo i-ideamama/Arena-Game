@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://pwry7tr3bkos"]
+[gd_scene load_steps=9 format=3 uid="uid://pwry7tr3bkos"]
 
+[ext_resource type="Script" path="res://Scripts/map.gd" id="1_lifiq"]
 [ext_resource type="Texture2D" uid="uid://cshlyns7fdyvu" path="res://Assets/football-pitch.png" id="1_wdjoj"]
 [ext_resource type="Texture2D" uid="uid://ktgfcku04sbp" path="res://Assets/football1.png" id="2_u4u6l"]
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="2_y1mf3"]
@@ -15,6 +16,7 @@ size = Vector2(22, 2408)
 radius = 108.296
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_lifiq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(540, 1204)
@@ -81,3 +83,13 @@ position = Vector2(776, 848)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="SecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

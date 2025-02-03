@@ -46,3 +46,4 @@ func _on_size_timer_timeout() -> void:
 	print('size timer timeout')
 	Server.rpc("reset_player_stat",multiplayer.get_unique_id(),1)
 	$SizeTimer.stop()
+	

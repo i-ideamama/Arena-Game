@@ -191,7 +191,15 @@ func change_player_stat_s(id, stat):
 func reset_player_stat_s(id, stat):
 	pass
 
+@rpc
+func send_update_to_player_timer():
+	pass
 
+@rpc("authority","call_remote","reliable")
+func update_player_timer():
+	Global.seconds_passed+=1
+	print(Global.seconds_passed)
+	get_parent().get_node("Lobby").get_node("elapsed_time").text=str(Global.seconds_passed)
 
 ### STUFF FOR LOBBY MANAGEMENT ###
 

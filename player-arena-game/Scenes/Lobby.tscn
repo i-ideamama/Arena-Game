@@ -18,20 +18,21 @@ position = Vector2(547, 2333)
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Control2"]
 z_index = -80
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 176.0
+offset_top = 1095.0
+offset_right = 849.0
+offset_bottom = 1594.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control2/ButtonContainer"]
@@ -79,8 +80,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -454.0
-offset_bottom = 150.0
+offset_left = 722.0
+offset_top = 4.0
+offset_right = 1176.0
+offset_bottom = 154.0
 grow_horizontal = 0
 
 [node name="OpS" type="HBoxContainer" parent="Control2/OpS"]
@@ -110,6 +113,14 @@ z_index = -100
 position = Vector2(540, 1200)
 scale = Vector2(1.2, 2)
 texture = ExtResource("2_q1abf")
+
+[node name="elapsed_time" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 8.0
+offset_right = 660.0
+offset_bottom = 187.0
+theme_override_font_sizes/normal_font_size = 100
 
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/LobbyManagerButton" to="." method="_on_lobby_manager_button_pressed"]
