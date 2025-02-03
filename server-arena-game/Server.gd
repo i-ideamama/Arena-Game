@@ -121,7 +121,11 @@ func goal_scored(goal_no):
 	goal_no-=1
 	print('goal scored in players '+str(connected_players[goal_no])+' goal')
 	rpc("update_score_display", connected_players[goal_no])
+	check_game_over()
 	reset_positions()
+
+func check_game_over():
+	pass
 
 func reset_positions():
 	for c in get_children():

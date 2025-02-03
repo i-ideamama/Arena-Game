@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwsf0dhtjb1l3"]
+[gd_scene load_steps=4 format=3 uid="uid://dwsf0dhtjb1l3"]
 
 [ext_resource type="Script" path="res://Scripts/lobby.gd" id="1_jald8"]
+[ext_resource type="FontFile" uid="uid://cfxxwgg737xhd" path="res://Assets/Fonts/upheavtt.ttf" id="2_3y6tv"]
 [ext_resource type="Texture2D" uid="uid://dsn1fvpw6n03t" path="res://Assets/football-pitch.png" id="2_q1abf"]
 
 [node name="Lobby" type="Control"]
@@ -44,11 +45,13 @@ alignment = 1
 
 [node name="Join" type="Button" parent="Control2/ButtonContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3y6tv")
 theme_override_font_sizes/font_size = 150
 text = "JOIN"
 
 [node name="LobbyManagerButton" type="Button" parent="Control2/ButtonContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3y6tv")
 theme_override_font_sizes/font_size = 100
 text = "ENTER LOBBY
 MANAGER"
@@ -63,14 +66,16 @@ offset_bottom = 150.0
 layout_mode = 2
 
 [node name="OwnScoreLabel" type="RichTextLabel" parent="Control2/OS/OS"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(160, 150)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
 theme_override_font_sizes/normal_font_size = 50
 text = "Own Score:"
 
 [node name="OwnScore" type="RichTextLabel" parent="Control2/OS/OS"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
 theme_override_font_sizes/normal_font_size = 50
 text = "0"
 
@@ -92,6 +97,7 @@ layout_mode = 2
 [node name="OppScoreLabel" type="RichTextLabel" parent="Control2/OpS/OpS"]
 custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Opponent Score:
@@ -100,6 +106,7 @@ text = "Opponent Score:
 [node name="OppScore" type="RichTextLabel" parent="Control2/OpS/OpS"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
 theme_override_font_sizes/normal_font_size = 50
 text = "0"
 
@@ -120,6 +127,7 @@ offset_left = 317.0
 offset_top = 8.0
 offset_right = 660.0
 offset_bottom = 187.0
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
 theme_override_font_sizes/normal_font_size = 100
 
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
