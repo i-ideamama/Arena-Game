@@ -10,10 +10,13 @@ var waiting_players = []
 
 var currently_waiting_players = 0
 var port = 8912
+var output = []
 
 func _ready() -> void:
 	setup_shit()
-
+	# netstat -anp | grep ':8912 '
+	OS.execute("netstat", ["-anp", "|", "grep", ":8912 "], output)
+	print(output)
 
 func setup_shit():
 	var server = WebSocketMultiplayerPeer.new()

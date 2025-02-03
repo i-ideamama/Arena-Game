@@ -1,5 +1,9 @@
 extends Node
 
+# 0 -> game not over
+# 1 -> game over
+var GAME_STATE := 0
+
 const SERVER_IP := "localhost"
 #const PORT := 8910
 const PORT := 8912
