@@ -10,16 +10,24 @@ var waiting_players = []
 
 var currently_waiting_players = 0
 # port where game server is currently running (for testing)
-var port = 9000
+#var port = 9001
 
-var command_output = []
-var output
+var thread : Thread
 
 func _ready() -> void:
+	#var command_output = []
+	#var port = 9001
+	#OS.execute("./GameServer.x86_64", [str(port)], command_output)
+	#start_game_at_port(9001)
 	setup_shit()
-	OS.execute("./is_port_free.sh", ["8912"], command_output)
+	
+func check_port_status(port):
+	print('check port status')
+	var command_output = []
+	var output
+	OS.execute("./is_port_free.sh", [str(port)], command_output)
 	output = int(command_output[0])
-	print(output)
+	return output
 
 func setup_shit():
 	var server = WebSocketMultiplayerPeer.new()
@@ -41,18 +49,45 @@ func setup_shit():
 
 func match_players():
 	print('match making in progress ... ')
+	var p = get_free_port_to_run_on()
+	
+	thread = Thread.new()
+	thread.start(start_game_at_port.bind(p))
+	
+	await get_tree().create_timer(1).timeout
 	for player_id in waiting_players:
-		rpc_id(int(player_id), "player_join_game_at_port", port)
 		# start game on players end (send this only to waiting players)
+		rpc_id(int(player_id), "player_join_game_at_port", p)
 	currently_waiting_players = 0
 
+func start_game_at_port(port):
+	print("trying to start game at "+str(port))
+	var command_output = []
+	OS.execute("./GameServer.x86_64", [str(port)], command_output)
+	print(command_output)
+
+func get_free_port_to_run_on():
+	print("jelo")
+	var found_free_port = false
+	var current_port = Global.START_PORT
+	while(found_free_port==false):
+		if(check_port_status(current_port)==0):
+			found_free_port=true
+			print("Going to run on: "+str(current_port))
+			return current_port
+			
+		else:
+			current_port+=1
 
 func _on_player_connected(id):
 	print("Player connected " + str(id))
 	connected_players.append(str(id))
 	waiting_players.append(str(id))
 	currently_waiting_players+=1
+	print("currently waiting  = "+str(currently_waiting_players))
+
 	if(currently_waiting_players==2):
+		print('2 players waiting')
 		match_players()
 		
 
