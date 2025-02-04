@@ -1,7 +1,7 @@
 extends Node
 
 
-const PORT = Global.PORT
+var PORT
 const DEFAULT_SERVER_IP = Global.SERVER_IP
 
 var map  = preload("res://Scenes/Map.tscn")
@@ -16,6 +16,8 @@ var ball_reset_position = Global.BALL_RESET_POSITION
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(0.5).timeout
+	PORT = Global.PORT_TO_RUN_ON
 	setup_shit()
 	spawn_elements()
 

@@ -1,12 +1,15 @@
 extends Node
 
+var args
+var PORT_TO_RUN_ON
+
 # 0 -> game not over
 # 1 -> game over
 var GAME_STATE := 0
 
 const SERVER_IP := "localhost"
 #const PORT := 8910
-const PORT := 8912
+const PORT := 9000
 const USE_SSL := false # put certs in assets/certs, a free let's encrypt one works for itch.io
 const TRUSTED_CHAIN_PATH := "res://assets/certs/development.crt"
 const PRIVATE_KEY_PATH := "res://assets/certs/development.key"
@@ -25,3 +28,10 @@ enum PUP {SPEED=0, SIZE=1}
 # enum PUP {SPEED, SIZE, GOAL_SWAP}
 
 const BALL_RESET_POSITION = Vector2(540,1200)
+
+
+func _ready() -> void:
+	args = Array(OS.get_cmdline_args())
+	print("printing args below : ")
+	PORT_TO_RUN_ON = int(args[0])
+	print(PORT_TO_RUN_ON)

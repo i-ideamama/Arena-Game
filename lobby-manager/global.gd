@@ -7,4 +7,3 @@ const TRUSTED_CHAIN_PATH := "res://assets/certs/development.crt"
 const PRIVATE_KEY_PATH := "res://assets/certs/development.key"
 
 # use ports from 9000-10000
-var STARTING_PORT = 9000
