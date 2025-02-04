@@ -50,7 +50,6 @@ func setup_shit():
 func match_players():
 	print('match making in progress ... ')
 	var p = get_free_port_to_run_on()
-	
 	thread = Thread.new()
 	thread.start(start_game_at_port.bind(p))
 	
@@ -162,4 +161,12 @@ func send_update_to_player_timer():
 
 @rpc
 func update_player_timer():
+	pass
+
+@rpc
+func spawn_orb():
+	pass
+
+@rpc
+func spawn_orb_in_player(powerup, global_pos):
 	pass

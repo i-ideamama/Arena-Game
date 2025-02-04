@@ -9,6 +9,7 @@ var player_scene = preload("res://Scenes/player.tscn")
 var m
 var player_spawn_pos = Vector2(200,200)
 var goal_scene = preload("res://Scenes/goal.tscn")
+var orb_scene = preload("res://Scenes/orb.tscn")
 
 var connected_players = []
 
@@ -17,7 +18,8 @@ var ball_reset_position = Global.BALL_RESET_POSITION
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
-	PORT = Global.PORT_TO_RUN_ON
+	#PORT = Global.PORT_TO_RUN_ON
+	PORT = Global.PORT
 	print('I am going to run on '+str(PORT))
 	setup_shit()
 	spawn_elements()
@@ -63,7 +65,20 @@ func spawn_elements():
 	goal.rotation = 0
 	
 	## spawn orbs for powerups
-	
+
+@rpc("authority","call_local","reliable")
+func spawn_orb():
+	var orb = orb_scene.instantiate()
+	add_child(orb)
+	orb.global_position = Global.ORB_SPAWN_POINT
+	var global_pos = orb.global_position
+	var pup = orb.powerup
+	rpc_id(0, "spawn_orb_in_player", global_pos)
+
+
+@rpc
+func spawn_orb_in_player(global_pos):
+	pass
 
 func StartGame():
 	m = map.instantiate()

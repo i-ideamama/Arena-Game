@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://pwry7tr3bkos"]
+[gd_scene load_steps=8 format=3 uid="uid://pwry7tr3bkos"]
 
 [ext_resource type="Script" path="res://Scripts/map.gd" id="1_lifiq"]
 [ext_resource type="Texture2D" uid="uid://cshlyns7fdyvu" path="res://Assets/football-pitch.png" id="1_wdjoj"]
 [ext_resource type="Texture2D" uid="uid://ktgfcku04sbp" path="res://Assets/football1.png" id="2_u4u6l"]
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="2_y1mf3"]
-[ext_resource type="PackedScene" uid="uid://cc202hecc4dwy" path="res://Scenes/orb.tscn" id="3_i07da"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bmat"]
 size = Vector2(1096, 26)
@@ -77,11 +76,12 @@ position = Vector2(560, 1848)
 [node name="2" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(544, 408)
 
-[node name="orb" parent="." instance=ExtResource("3_i07da")]
-position = Vector2(776, 848)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
+
+[node name="PUP_Timer" type="Timer" parent="."]
+wait_time = 15.0
 autostart = true
 
 [node name="SecondTimer" type="Timer" parent="."]
@@ -91,5 +91,6 @@ autostart = true
 wait_time = 60.0
 autostart = true
 
+[connection signal="timeout" from="PUP_Timer" to="." method="_on_pup_timer_timeout"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

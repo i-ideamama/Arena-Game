@@ -29,6 +29,8 @@ enum PUP {SPEED=0, SIZE=1}
 
 const BALL_RESET_POSITION = Vector2(540,1200)
 
+# POSITIONS
+var ORB_SPAWN_POINT = Vector2(540, 1200)
 
 func _ready() -> void:
 	args = Array(OS.get_cmdline_args())

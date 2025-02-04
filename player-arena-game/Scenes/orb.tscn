@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://duwaahm20xanr"]
+[gd_scene load_steps=3 format=3 uid="uid://duwaahm20xanr"]
 
 [ext_resource type="Script" path="res://Scripts/orb.gd" id="1_2cnku"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a6ew4"]
+radius = 68.1175
 
 [node name="orb" type="Node2D"]
 script = ExtResource("1_2cnku")
@@ -10,3 +13,4 @@ script = ExtResource("1_2cnku")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a6ew4")

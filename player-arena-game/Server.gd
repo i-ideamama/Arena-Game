@@ -9,6 +9,7 @@ var player = preload("res://Scenes/player.tscn")
 var other_player = preload("res://Scenes/other_player.tscn")
 var player_s_pos = Vector2.ZERO
 var goal_scene = preload("res://Scenes/goal.tscn")
+var orb_scene = preload("res://Scenes/orb.tscn")
 
 var other_player_id
 
@@ -212,7 +213,16 @@ func player_join_game_at_port(port):
 	await get_tree().create_timer(0.5).timeout
 	switch_to_game_at_port(port)
 
+@rpc
+func spawn_orb():
+	pass
 
+@rpc("authority", "call_remote", "reliable")
+func spawn_orb_in_player(global_pos):
+	var orb = orb_scene.instantiate()
+	get_parent().get_node("Lobby").add_child(orb)
+	orb.global_position = global_pos
+	
 func switch_to_game_at_port(port):
 	var old_id = multiplayer.get_unique_id()
 	rpc_id(0, "remove_from_waiting", old_id)
