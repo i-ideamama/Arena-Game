@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6ew4"]
 radius = 68.1175
 
-[node name="orb" type="Node2D"]
+[node name="orb" type="Node2D" groups=["orb"]]
 script = ExtResource("1_2cnku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

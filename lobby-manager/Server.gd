@@ -170,3 +170,11 @@ func spawn_orb():
 @rpc
 func spawn_orb_in_player(powerup, global_pos):
 	pass
+
+@rpc
+func delete_orb():
+	pass
+
+@rpc
+func delete_orb_in_player():
+	pass

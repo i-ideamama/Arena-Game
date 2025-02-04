@@ -14,4 +14,4 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body.is_in_group("player")):
 		Server.rpc_id(1, "change_player_stat_s", str(body.name), powerup)
-		queue_free()
+		Server.rpc_id(1, "delete_orb")

@@ -222,7 +222,18 @@ func spawn_orb_in_player(global_pos):
 	var orb = orb_scene.instantiate()
 	get_parent().get_node("Lobby").add_child(orb)
 	orb.global_position = global_pos
-	
+
+@rpc
+func delete_orb():
+	pass
+
+@rpc("authority","call_remote","reliable")
+func delete_orb_in_player():
+	for c in get_parent().get_node("Lobby").get_children():
+		if c.is_in_group("orb"):
+			get_parent().get_node("Lobby").remove_child(c)
+			c.queue_free()
+
 func switch_to_game_at_port(port):
 	var old_id = multiplayer.get_unique_id()
 	rpc_id(0, "remove_from_waiting", old_id)

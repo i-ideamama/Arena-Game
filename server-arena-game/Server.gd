@@ -75,10 +75,25 @@ func spawn_orb():
 	var pup = orb.powerup
 	rpc_id(0, "spawn_orb_in_player", global_pos)
 
+@rpc("authority","call_local","reliable")
+func delete_orb():
+		for c in get_children():
+			if(c.name=="Map"):
+				for x in c.get_children():
+					if(x.is_in_group("orb")):
+						c.remove_child(x)
+						c.queue_free()
+		rpc_id(0, "delete_orb_in_player")
+
+@rpc
+func delete_orb_in_player():
+	pass
 
 @rpc
 func spawn_orb_in_player(global_pos):
 	pass
+
+
 
 func StartGame():
 	m = map.instantiate()
