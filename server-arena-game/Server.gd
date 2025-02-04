@@ -17,10 +17,8 @@ var ball_reset_position = Global.BALL_RESET_POSITION
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
-	PORT = Global.PORT
-	#PORT = Global.PORT_TO_RUN_ON
+	PORT = Global.PORT_TO_RUN_ON
 	print('I am going to run on '+str(PORT))
-	#PORT = Global.PORT
 	setup_shit()
 	spawn_elements()
 
