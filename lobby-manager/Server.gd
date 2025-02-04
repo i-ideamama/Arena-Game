@@ -10,12 +10,15 @@ var waiting_players = []
 
 var currently_waiting_players = 0
 var port = 8912
-var output = []
+
+var command_output = []
+var output
 
 func _ready() -> void:
 	setup_shit()
 	# netstat -anp | grep ':8912 '
-	OS.execute("netstat", ["-anp", "|", "grep", ":8912 "], output)
+	OS.execute("./is_port_free.sh", ["8912"], command_output)
+	output = int(command_output[0])
 	print(output)
 
 func setup_shit():

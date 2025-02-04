@@ -59,6 +59,8 @@ func spawn_elements():
 			goal.position = c.get_node("SpawnLocations").get_node("goal2").global_position
 	goal.rotation = 0
 	
+	## spawn orbs for powerups
+	
 
 func StartGame():
 	m = map.instantiate()
