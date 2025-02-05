@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_x28ll"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqws2"]
-size = Vector2(128, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4rm4"]
+radius = 64.0
+height = 176.0
 
 [node name="Player1" type="RigidBody2D" groups=["player"]]
 mass = 2.0
@@ -12,4 +13,5 @@ script = ExtResource("1_x28ll")
 metadata/_edit_horizontal_guides_ = [-75.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oqws2")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_l4rm4")
