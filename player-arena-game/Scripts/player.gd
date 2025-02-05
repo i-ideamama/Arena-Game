@@ -47,3 +47,12 @@ func _on_size_timer_timeout() -> void:
 	Server.rpc("reset_player_stat",multiplayer.get_unique_id(),1)
 	$SizeTimer.stop()
 	
+
+
+func blink(newValue: float):
+	$Sprite2D.material.set_shader_parameter("blink_intensity", newValue)
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if(area.name=="ball"):
+		var tween = get_tree().create_tween()
+		tween.tween_method(blink, 1.0,0.0,0.5)

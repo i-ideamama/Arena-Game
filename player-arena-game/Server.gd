@@ -38,7 +38,7 @@ func join_server(port=null):
 	
 	var client = WebSocketMultiplayerPeer.new()
 	var address
-	# address = "144.24.133.118"
+	#address = "144.24.133.118"
 	address = ""
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
