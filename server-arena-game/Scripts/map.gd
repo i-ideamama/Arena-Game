@@ -10,4 +10,5 @@ func _on_second_timer_timeout() -> void:
 
 
 func _on_pup_timer_timeout() -> void:
+	Server.rpc_id(1, "despawn_orbs")
 	Server.rpc_id(1, "spawn_orb")

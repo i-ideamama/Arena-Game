@@ -89,7 +89,7 @@ func _on_player_connected(id):
 	player.position = player_spawn_pos
 	player.name = str(id)
 	connected_players.append(str(id))
-	
+	print(connected_players)
 	for c in connected_players:
 		rpc_id(int(c), "update_other_player_details", connected_players)
 
@@ -165,7 +165,32 @@ func reset_player_stat_s(id, stat):
 @rpc("authority","call_local","reliable")
 func send_update_to_player_timer():
 	rpc_id(0,"update_player_timer")
+
+@rpc("authority","call_local","reliable")
+func spawn_orb():
+	var orb = orb_scene.instantiate()
+	orb.global_position = Global.ORB_SPAWN_POINT
+	get_node("Map").add_child(orb)
+	rpc_id(0, "spawn_orbs_in_player", Global.ORB_SPAWN_POINT)
+
+@rpc("authority","call_local","reliable")
+func despawn_orbs():
+	for c in get_node("Map").get_children():
+		if(c.is_in_group("orb")):
+			#get_node("Map").call_deferred(self, remove_child(c))
+			#get_node("Map").remove_child(c).call_deferred()
+			get_node("Map").call_deferred("remove_child", c)
+			c.queue_free()
+	rpc_id(0, "despawn_orbs_in_player")
 	
+@rpc
+func despawn_orbs_in_player():
+	pass
+
+@rpc
+func spawn_orbs_in_player(pos):
+	pass
+
 
 func _on_timeout():
 	queue_free()

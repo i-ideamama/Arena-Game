@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	Server.rpc_id(1, "get_player_s_pos", multiplayer.get_unique_id())
 	Server.rpc_id(1, "get_other_player_s_pos", multiplayer.get_unique_id() ,Server.other_player_id)
 	Server.rpc_id(1, "get_ball_pos")
-	
+
 
 func _input(event):
 	

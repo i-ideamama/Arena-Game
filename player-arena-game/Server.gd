@@ -122,7 +122,7 @@ func update_other_player_pos(pos, rot):
 		Nodes.get_node(str(other_player_id)).rotation = rot
 
 @rpc("authority", "call_remote", "reliable")
-func update_other_player_details(connected_players):
+func update_other_player_details(connected_players: Array):
 	for c in connected_players:
 		if !(multiplayer.get_unique_id() == int(c)):
 			other_player_id = int(c)
@@ -162,7 +162,30 @@ func update_score_display(scorer_id):
 		get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text)+1)
 	else:
 		get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text)+1)
-	
+
+@rpc
+func spawn_orb():
+	pass
+
+@rpc
+func despawn_orbs():
+	pass
+
+@rpc("authority","call_remote","reliable")
+func spawn_orbs_in_player(pos):
+	var orb = orb_scene.instantiate()
+	Nodes.add_child(orb)
+	orb.global_position = pos
+
+@rpc("authority","call_remote","reliable")
+func despawn_orbs_in_player():
+	print('jasdfl')
+	for c in Nodes.get_children():
+		if(c.is_in_group("orb")):
+			print("hi")
+			Nodes.call_deferred("remove_child", c)
+			#Nodes.remove_child(c)
+			c.queue_free()
 
 @rpc
 func apply_impulse_on_player_s(id, force):
@@ -199,7 +222,6 @@ func send_update_to_player_timer():
 @rpc("authority","call_remote","reliable")
 func update_player_timer():
 	Global.seconds_passed+=1
-	print(Global.seconds_passed)
 	get_parent().get_node("Lobby").get_node("elapsed_time").text=str(Global.seconds_passed)
 
 ### STUFF FOR LOBBY MANAGEMENT ###
