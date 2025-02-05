@@ -179,12 +179,9 @@ func spawn_orbs_in_player(pos):
 
 @rpc("authority","call_remote","reliable")
 func despawn_orbs_in_player():
-	print('jasdfl')
 	for c in Nodes.get_children():
 		if(c.is_in_group("orb")):
-			print("hi")
 			Nodes.call_deferred("remove_child", c)
-			#Nodes.remove_child(c)
 			c.queue_free()
 
 @rpc

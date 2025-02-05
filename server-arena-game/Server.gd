@@ -177,8 +177,6 @@ func spawn_orb():
 func despawn_orbs():
 	for c in get_node("Map").get_children():
 		if(c.is_in_group("orb")):
-			#get_node("Map").call_deferred(self, remove_child(c))
-			#get_node("Map").remove_child(c).call_deferred()
 			get_node("Map").call_deferred("remove_child", c)
 			c.queue_free()
 	rpc_id(0, "despawn_orbs_in_player")
