@@ -162,19 +162,3 @@ func send_update_to_player_timer():
 @rpc
 func update_player_timer():
 	pass
-
-@rpc
-func spawn_orb():
-	pass
-
-@rpc
-func spawn_orb_in_player(powerup, global_pos):
-	pass
-
-@rpc
-func delete_orb():
-	pass
-
-@rpc
-func delete_orb_in_player():
-	pass

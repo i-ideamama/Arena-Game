@@ -66,32 +66,6 @@ func spawn_elements():
 	
 	## spawn orbs for powerups
 
-@rpc("authority","call_local","reliable")
-func spawn_orb():
-	var orb = orb_scene.instantiate()
-	add_child(orb)
-	orb.global_position = Global.ORB_SPAWN_POINT
-	var global_pos = orb.global_position
-	var pup = orb.powerup
-	rpc_id(0, "spawn_orb_in_player", global_pos)
-
-@rpc("authority","call_local","reliable")
-func delete_orb():
-		for c in get_children():
-			if(c.name=="Map"):
-				for x in c.get_children():
-					if(x.is_in_group("orb")):
-						c.remove_child(x)
-						c.queue_free()
-		rpc_id(0, "delete_orb_in_player")
-
-@rpc
-func delete_orb_in_player():
-	pass
-
-@rpc
-func spawn_orb_in_player(global_pos):
-	pass
 
 
 
