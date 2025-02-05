@@ -10,14 +10,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_jald8")
 
-[node name="GoalSpawns" type="Node2D" parent="."]
-
-[node name="1" type="Marker2D" parent="GoalSpawns"]
-position = Vector2(544, 83)
-
-[node name="2" type="Marker2D" parent="GoalSpawns"]
-position = Vector2(547, 2333)
-
 [node name="Control2" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -27,6 +19,58 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="OS" type="HBoxContainer" parent="Control2"]
+layout_mode = 1
+offset_right = 314.0
+offset_bottom = 150.0
+
+[node name="OS" type="HBoxContainer" parent="Control2/OS"]
+layout_mode = 2
+
+[node name="OwnScoreLabel" type="RichTextLabel" parent="Control2/OS/OS"]
+custom_minimum_size = Vector2(160, 150)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
+theme_override_font_sizes/normal_font_size = 50
+text = "Own Score:"
+
+[node name="OwnScore" type="RichTextLabel" parent="Control2/OS/OS"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
+theme_override_font_sizes/normal_font_size = 50
+text = "0"
+
+[node name="OpS" type="HBoxContainer" parent="Control2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 722.0
+offset_top = 4.0
+offset_right = 1176.0
+offset_bottom = 154.0
+grow_horizontal = 0
+
+[node name="OpS" type="HBoxContainer" parent="Control2/OpS"]
+layout_mode = 2
+
+[node name="OppScoreLabel" type="RichTextLabel" parent="Control2/OpS/OpS"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Opponent Score:
+"
+
+[node name="OppScore" type="RichTextLabel" parent="Control2/OpS/OpS"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_3y6tv")
+theme_override_font_sizes/normal_font_size = 50
+text = "0"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Control2"]
 z_index = -80
@@ -57,60 +101,6 @@ theme_override_font_sizes/font_size = 100
 text = "ENTER LOBBY
 MANAGER"
 
-[node name="OS" type="HBoxContainer" parent="Control2"]
-z_index = -80
-layout_mode = 1
-offset_right = 304.0
-offset_bottom = 150.0
-
-[node name="OS" type="HBoxContainer" parent="Control2/OS"]
-layout_mode = 2
-
-[node name="OwnScoreLabel" type="RichTextLabel" parent="Control2/OS/OS"]
-custom_minimum_size = Vector2(160, 150)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_3y6tv")
-theme_override_font_sizes/normal_font_size = 50
-text = "Own Score:"
-
-[node name="OwnScore" type="RichTextLabel" parent="Control2/OS/OS"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_3y6tv")
-theme_override_font_sizes/normal_font_size = 50
-text = "0"
-
-[node name="OpS" type="HBoxContainer" parent="Control2"]
-z_index = -80
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 722.0
-offset_top = 4.0
-offset_right = 1176.0
-offset_bottom = 154.0
-grow_horizontal = 0
-
-[node name="OpS" type="HBoxContainer" parent="Control2/OpS"]
-layout_mode = 2
-
-[node name="OppScoreLabel" type="RichTextLabel" parent="Control2/OpS/OpS"]
-custom_minimum_size = Vector2(300, 150)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_3y6tv")
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "Opponent Score:
-"
-
-[node name="OppScore" type="RichTextLabel" parent="Control2/OpS/OpS"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_3y6tv")
-theme_override_font_sizes/normal_font_size = 50
-text = "0"
-
 [node name="CenterContainer" type="CenterContainer" parent="Control2"]
 layout_mode = 0
 offset_right = 40.0
@@ -129,6 +119,14 @@ position = Vector2(540, 1200)
 rotation = 1.5708
 scale = Vector2(3.18, 2.25)
 texture = ExtResource("4_dyptj")
+
+[node name="GoalSpawns" type="Node2D" parent="."]
+
+[node name="1" type="Marker2D" parent="GoalSpawns"]
+position = Vector2(544, 83)
+
+[node name="2" type="Marker2D" parent="GoalSpawns"]
+position = Vector2(547, 2333)
 
 [node name="elapsed_time" type="RichTextLabel" parent="."]
 layout_mode = 0

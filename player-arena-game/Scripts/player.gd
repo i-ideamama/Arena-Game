@@ -48,7 +48,6 @@ func _on_size_timer_timeout() -> void:
 	$SizeTimer.stop()
 	
 
-
 func blink(newValue: float):
 	$Sprite2D.material.set_shader_parameter("blink_intensity", newValue)
 

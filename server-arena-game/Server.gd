@@ -19,8 +19,8 @@ var ball_reset_position = Global.BALL_RESET_POSITION
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
-	#PORT = Global.PORT_TO_RUN_ON
-	PORT = Global.PORT
+	PORT = Global.PORT_TO_RUN_ON
+	#PORT = Global.PORT
 	print('I am going to run on '+str(PORT))
 	setup_shit()
 	spawn_elements()
@@ -141,6 +141,7 @@ func check_game_over(goal_no):
 		player_scores[1]+=1
 	if((player_scores[0]>=Global.GOALS_TO_WIN)or(player_scores[1]>=Global.GOALS_TO_WIN)):
 		print('game over!')
+		OS.kill(OS.get_process_id())
 
 func reset_positions():
 	for c in get_children():
