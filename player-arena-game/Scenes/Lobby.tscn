@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwsf0dhtjb1l3"]
+[gd_scene load_steps=5 format=3 uid="uid://dwsf0dhtjb1l3"]
 
 [ext_resource type="Script" path="res://Scripts/lobby.gd" id="1_jald8"]
 [ext_resource type="FontFile" uid="uid://cfxxwgg737xhd" path="res://Assets/Fonts/upheavtt.ttf" id="2_3y6tv"]
 [ext_resource type="Texture2D" uid="uid://dsn1fvpw6n03t" path="res://Assets/football-pitch.png" id="2_q1abf"]
+[ext_resource type="Texture2D" uid="uid://ctx8i28rw1e3k" path="res://Assets/field.png" id="4_dyptj"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -120,6 +121,14 @@ z_index = -100
 position = Vector2(540, 1200)
 scale = Vector2(1.2, 2)
 texture = ExtResource("2_q1abf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control2/CenterContainer"]
+visible = false
+z_index = -100
+position = Vector2(540, 1200)
+rotation = 1.5708
+scale = Vector2(3.18, 2.25)
+texture = ExtResource("4_dyptj")
 
 [node name="elapsed_time" type="RichTextLabel" parent="."]
 layout_mode = 0
