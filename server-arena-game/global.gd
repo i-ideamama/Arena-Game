@@ -21,6 +21,7 @@ const PUP_PLAYER_MASS = 0.8
 const DEFAULT_PLAYER_SCALE = 1
 const PUP_PLAYER_SCALE = 1.5
 
+const GOALS_TO_WIN = 3
 
 # PowerUPs
 enum PUP {SPEED=0, SIZE=1}

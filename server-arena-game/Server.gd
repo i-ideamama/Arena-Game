@@ -12,6 +12,7 @@ var goal_scene = preload("res://Scenes/goal.tscn")
 var orb_scene = preload("res://Scenes/orb.tscn")
 
 var connected_players = []
+var player_scores = [0, 0]
 
 var ball_reset_position = Global.BALL_RESET_POSITION
 
@@ -130,11 +131,16 @@ func goal_scored(goal_no):
 	goal_no-=1
 	print('goal scored in players '+str(connected_players[goal_no])+' goal')
 	rpc("update_score_display", connected_players[goal_no])
-	check_game_over()
+	check_game_over(goal_no)
 	reset_positions()
 
-func check_game_over():
-	pass
+func check_game_over(goal_no):
+	if(goal_no==1):
+		player_scores[0]+=1
+	elif(goal_no==0):
+		player_scores[1]+=1
+	if((player_scores[0]>=Global.GOALS_TO_WIN)or(player_scores[1]>=Global.GOALS_TO_WIN)):
+		print('game over!')
 
 func reset_positions():
 	for c in get_children():
