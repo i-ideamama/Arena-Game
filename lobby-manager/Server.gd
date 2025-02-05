@@ -162,3 +162,16 @@ func send_update_to_player_timer():
 @rpc
 func update_player_timer():
 	pass
+
+@rpc
+func spawn_orb():
+	pass
+@rpc
+func despawn_orbs():
+	pass
+@rpc
+func spawn_orbs_in_player(pos):
+	pass
+@rpc
+func despawn_orbs_in_player():
+	pass

@@ -10,7 +10,7 @@ var GAME_STATE := 0
 const SERVER_IP := "localhost"
 #const PORT := 8910
 const PORT := 9001
-const USE_SSL := false # put certs in assets/certs, a free let's encrypt one works for itch.io
+const USE_SSL := true # put certs in assets/certs, a free let's encrypt one works for itch.io
 const TRUSTED_CHAIN_PATH := "res://assets/certs/development.crt"
 const PRIVATE_KEY_PATH := "res://assets/certs/development.key"
 
