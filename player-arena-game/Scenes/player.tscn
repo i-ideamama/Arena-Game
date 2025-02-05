@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2yv5xo4w381r"]
+[gd_scene load_steps=8 format=3 uid="uid://d2yv5xo4w381r"]
 
 [ext_resource type="Texture2D" uid="uid://c5bc6x3th5bfv" path="res://icon.svg" id="1_13yev"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_w683w"]
+[ext_resource type="PackedScene" uid="uid://qccbalaq8j2s" path="res://Scenes/trail.tscn" id="2_6geip"]
 [ext_resource type="Shader" path="res://Shaders/player.gdshader" id="2_hvokq"]
+[ext_resource type="Script" path="res://Scripts/object_trail.gd" id="3_jlk3e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iv75r"]
 shader = ExtResource("2_hvokq")
@@ -14,6 +16,10 @@ size = Vector2(128, 128)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_w683w")
+
+[node name="trail" parent="." instance=ExtResource("2_6geip")]
+top_level = true
+script = ExtResource("3_jlk3e")
 
 [node name="SpeedTimer" type="Timer" parent="."]
 wait_time = 5.0

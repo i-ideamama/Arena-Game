@@ -34,14 +34,12 @@ func join_server(port=null):
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()
 		#reset_networked_nodes()
-		
-	port = 6001
 	
 	var client = WebSocketMultiplayerPeer.new()
 	var address
-	#address=""
+	address=""
 	#address = "144.24.133.118"
-	address = "staging.arena-app.crux-bphc.com"
+	#address = "staging.arena-app.crux-bphc.com"
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
 	multiplayer.multiplayer_peer = null
