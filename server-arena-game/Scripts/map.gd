@@ -6,6 +6,7 @@ func _on_game_timer_timeout() -> void:
 
 
 func _on_second_timer_timeout() -> void:
+	Global.TIME_ELAPSED+=1
 	Server.rpc_id(1, "send_update_to_player_timer")
 
 

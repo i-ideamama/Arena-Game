@@ -13,28 +13,26 @@ var orb_scene = preload("res://Scenes/orb.tscn")
 
 var other_player_id
 
-func _ready() -> void:
-	spawn_elements()
-	
+func _ready() -> void:	
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	
-	
-	var ball = ball_scene.instantiate()
-	Nodes.add_child(ball)
-	ball.position = Vector2(540, 1200)
+
 
 func spawn_elements():
 	# spawn goals
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_1_SPAWN_POINT, deg_to_rad(180))
 	Global.instance_node(goal_scene, Nodes, Global.GOAL_2_SPAWN_POINT)
-
+	
+	var ball = ball_scene.instantiate()
+	Nodes.add_child(ball)
+	ball.position = Vector2(540, 1200)
+	
 func join_server(port=null):
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()
 		#reset_networked_nodes()
-	
+	port=9001
 	var client = WebSocketMultiplayerPeer.new()
 	var address
 	address=""

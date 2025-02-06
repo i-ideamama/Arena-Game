@@ -54,11 +54,18 @@ func match_players():
 	thread.start(start_game_at_port.bind(p))
 	
 	await get_tree().create_timer(1).timeout
-	for player_id in waiting_players:
+	#for player_id in waiting_players:
 		# start game on players end (send this only to waiting players)
-		rpc_id(int(player_id), "player_join_game_at_port", p)
-	currently_waiting_players = 0
-
+	rpc_id(int(waiting_players[0]), "player_join_game_at_port", p)
+	waiting_players.remove_at(0)
+	rpc_id(int(waiting_players[0]), "player_join_game_at_port", p)
+	waiting_players.remove_at(0)
+	currently_waiting_players -=2
+	
+	#for player_id in waiting_players:
+	#	rpc_id(int(player_id), "player_join_game_at_port", p)
+	#currently_waiting_players = 0
+	
 func start_game_at_port(port):
 	print("trying to start game at "+str(port))
 	var command_output = []
@@ -95,62 +102,37 @@ func _on_player_disconnected(id):
 	connected_players.erase(str(id))
 
 @rpc
-func remove_from_waiting(id):
-	waiting_players.erase(str(id))
-	connected_players.erase(str(id))
-
-@rpc
-func player_join_game_at_port(port):
-	pass
-
-# kfjlajsdfja;lsdjfl
-@rpc
-func instance_player(id, location):
-	pass
-@rpc
-func delete_obj(id):
-	pass
-@rpc
-func update_player_pos(id, pos, rot):
-	pass
-@rpc
-func update_other_player_pos(pos, rot):
-	pass
-@rpc
-func update_other_player_details(connected_players):
-	pass
-@rpc
-func update_ball_pos(pos, rot):
-	pass
-@rpc
-func change_player_stat(id, stat):
-	pass
-@rpc
-func reset_player_stat(id, stat):
-	pass
-@rpc
-func update_score_display(scorer_id):
-	pass
-
-
-@rpc
 func apply_impulse_on_player_s(id, force):
 	pass
-@rpc
-func get_other_player_s_pos(id):
-	pass
+
 @rpc
 func get_player_s_pos(id):
 	pass
+
+@rpc
+func get_other_player_s_pos(id, other_id):
+	pass
+
 @rpc
 func get_ball_pos():
 	pass
+
+
+
 @rpc
-func goal_scored(scorer_id):
+func goal_scored(goal_no):
 	pass
+
+
+@rpc
+func winner_info(winner_id):
+	pass
+
+## ABILITIES
 @rpc
 func change_player_stat_s(id, stat):
 	pass
+	
 @rpc
 func reset_player_stat_s(id, stat):
 	pass
@@ -160,18 +142,68 @@ func send_update_to_player_timer():
 	pass
 
 @rpc
+func spawn_orb():
+	pass
+
+@rpc
+func despawn_orbs():
+	pass
+	
+@rpc
+func despawn_orbs_in_player():
+	pass
+
+@rpc
+func spawn_orbs_in_player(pos):
+	pass
+
+@rpc()
 func update_player_timer():
 	pass
 
 @rpc
-func spawn_orb():
+func change_player_stat(id, stat):
 	pass
+
 @rpc
-func despawn_orbs():
+func update_player_pos(id, pos, rot):
 	pass
+
 @rpc
-func spawn_orbs_in_player(pos):
+func update_other_player_pos(pos, rot):
 	pass
+
 @rpc
-func despawn_orbs_in_player():
+func update_other_player_details(connected_players):
+	pass
+
+@rpc
+func update_ball_pos(pos, rot):
+	pass
+
+@rpc
+func instance_player(id, location):
+	pass
+
+@rpc
+func delete_obj(id):
+	pass
+
+@rpc
+func reset_player_stat(stat):
+	pass
+
+@rpc
+func update_score_display(scorer_id):
+	pass
+
+
+
+# sdfasdfads
+@rpc
+func remove_from_waiting(id):
+	pass
+
+@rpc
+func player_join_game_at_port(port):
 	pass

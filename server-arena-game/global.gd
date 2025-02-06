@@ -16,6 +16,7 @@ const TRUSTED_CHAIN_PATH := "res://assets/certs/something.crt"
 const PRIVATE_KEY_PATH := "res://assets/certs/something.key"
 # const TRUSTED_CHAIN_PATH := "res://assets/certs/development.crt"
 
+var TIME_ELAPSED := 0
 
 const DEFAULT_PLAYER_MASS = 2
 const PUP_PLAYER_MASS = 0.8

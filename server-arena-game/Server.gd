@@ -80,9 +80,10 @@ func _on_player_connected(id):
 	for c in get_children():
 		if(c.name=="Map"):
 			if(connected_players.size()<1):
-				player_spawn_pos = c.get_node("SpawnLocations").get_node("1").global_position
-			else:
+				print('first')
 				player_spawn_pos = c.get_node("SpawnLocations").get_node("2").global_position
+			else:
+				player_spawn_pos = c.get_node("SpawnLocations").get_node("1").global_position
 	rpc_id(0, "instance_player", id, player_spawn_pos)
 
 	var player = player_scene.instantiate()
@@ -93,7 +94,8 @@ func _on_player_connected(id):
 	print(connected_players)
 	for c in connected_players:
 		rpc_id(int(c), "update_other_player_details", connected_players)
-
+	if(connected_players.size()>1):
+		reset_positions()
 
 func _on_player_disconnected(id):
 	print("Player disconnected " + str(id))
@@ -145,11 +147,12 @@ func check_game_over(goal_no):
 	
 	if(player_scores[0]>=Global.GOALS_TO_WIN):
 		winner = connected_players[0]
+		rpc_id(0, "winner_info", winner)
+		OS.kill(OS.get_process_id())
 	elif (player_scores[1]>=Global.GOALS_TO_WIN):
 		winner = connected_players[1]
-	rpc_id(0, "winner_info", winner)
-	
-	#OS.kill(OS.get_process_id())
+		rpc_id(0, "winner_info", winner)
+		OS.kill(OS.get_process_id())
 
 @rpc
 func winner_info(winner_id):
@@ -158,7 +161,9 @@ func winner_info(winner_id):
 func reset_positions():
 	for c in get_children():
 		if(c.name=="Map"):
+			#c.set_deferred('get_node(str(connected_players[0])).move_body', c.get_node("SpawnLocations").get_node("1").global_position)
 			c.get_node(str(connected_players[0])).move_body(c.get_node("SpawnLocations").get_node("1").global_position)
+			#c.set_deferred('get_node(str(connected_players[1])).move_body', c.get_node("SpawnLocations").get_node("2").global_position)
 			c.get_node(str(connected_players[1])).move_body(c.get_node("SpawnLocations").get_node("2").global_position)
 			c.get_node("ball").move_body(ball_reset_position)
 
@@ -183,7 +188,8 @@ func reset_player_stat_s(id, stat):
 
 @rpc("authority","call_local","reliable")
 func send_update_to_player_timer():
-	rpc_id(0,"update_player_timer")
+	for p in connected_players:
+		rpc_id(int(p),"update_player_timer")
 
 @rpc("authority","call_local","reliable")
 func spawn_orb():
