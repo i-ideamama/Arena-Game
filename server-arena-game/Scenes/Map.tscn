@@ -88,7 +88,7 @@ autostart = true
 autostart = true
 
 [node name="GameTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 120.0
 
 [connection signal="timeout" from="PUP_Timer" to="." method="_on_pup_timer_timeout"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]

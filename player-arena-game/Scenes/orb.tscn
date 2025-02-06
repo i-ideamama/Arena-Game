@@ -1,16 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://duwaahm20xanr"]
+[gd_scene load_steps=7 format=3 uid="uid://duwaahm20xanr"]
 
 [ext_resource type="Script" path="res://Scripts/orb.gd" id="1_2cnku"]
+[ext_resource type="Texture2D" uid="uid://8uv6l8w2kqsp" path="res://Assets/Full Coins.png" id="2_q478i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6ew4"]
 radius = 68.1175
+
+[sub_resource type="Animation" id="Animation_ikk0v"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="Animation" id="Animation_q3u0f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_elffc"]
+_data = {
+"RESET": SubResource("Animation_q3u0f"),
+"spin": SubResource("Animation_ikk0v")
+}
 
 [node name="orb" type="Node2D" groups=["orb"]]
 script = ExtResource("1_2cnku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("2_q478i")
+hframes = 8
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_a6ew4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_elffc")
+}
