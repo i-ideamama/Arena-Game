@@ -25,7 +25,6 @@ func _ready() -> void:
 	setup_shit()
 	spawn_elements()
 
-
 func setup_shit():
 	var server = WebSocketMultiplayerPeer.new()
 	var error
@@ -84,6 +83,7 @@ func _on_player_connected(id):
 				player_spawn_pos = c.get_node("SpawnLocations").get_node("2").global_position
 			else:
 				player_spawn_pos = c.get_node("SpawnLocations").get_node("1").global_position
+				Global.start_timer = true
 	rpc_id(0, "instance_player", id, player_spawn_pos)
 
 	var player = player_scene.instantiate()
