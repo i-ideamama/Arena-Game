@@ -139,9 +139,21 @@ func check_game_over(goal_no):
 		player_scores[0]+=1
 	elif(goal_no==0):
 		player_scores[1]+=1
-	if((player_scores[0]>=Global.GOALS_TO_WIN)or(player_scores[1]>=Global.GOALS_TO_WIN)):
-		print('game over!')
-		OS.kill(OS.get_process_id())
+	var winner
+	
+	## the api call can be done somewhere here
+	
+	if(player_scores[0]>=Global.GOALS_TO_WIN):
+		winner = connected_players[0]
+	elif (player_scores[1]>=Global.GOALS_TO_WIN):
+		winner = connected_players[1]
+	rpc_id(0, "winner_info", winner)
+	
+	#OS.kill(OS.get_process_id())
+
+@rpc
+func winner_info(winner_id):
+	pass
 
 func reset_positions():
 	for c in get_children():

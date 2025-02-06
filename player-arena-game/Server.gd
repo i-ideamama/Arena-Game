@@ -232,6 +232,12 @@ func player_join_game_at_port(port):
 	await get_tree().create_timer(0.5).timeout
 	switch_to_game_at_port(port)
 
+@rpc("authority", "call_remote", "reliable")
+func winner_info(winner_id):
+	if(winner_id == str(multiplayer.get_unique_id())):
+		Global.WIN = true
+	else:
+		Global.WIN = false
 
 func switch_to_game_at_port(port):
 	var old_id = multiplayer.get_unique_id()

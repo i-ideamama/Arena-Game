@@ -25,6 +25,8 @@ enum PUP {SPEED=0, SIZE=1}
 
 var seconds_passed := 0
 
+var WIN = null
+
 func instance_node(node, parent, location, rot = 0):
 	var node_instance = node.instantiate()
 	node_instance.global_position = location
