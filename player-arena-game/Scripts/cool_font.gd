@@ -7,8 +7,10 @@ var txt = null
 func _ready() -> void:
 	if(win==false):
 		txt = "you lose"
-	if(win==true):
+	elif (win==true):
 		txt = "you win"
+	else:
+		txt = "--draw--"
 
 
 func _process(delta: float) -> void:

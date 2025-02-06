@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _on_game_timer_timeout() -> void:
-	pass
+	Server.check_win_condns()
 
 
 func _on_second_timer_timeout() -> void:

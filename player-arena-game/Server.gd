@@ -269,16 +269,17 @@ func player_join_game_at_port(port):
 @rpc("authority", "call_remote", "reliable")
 func winner_info(winner_id):
 	fade_out()
-	get_parent().get_node("Lobby").hide()
-	for c in Nodes.get_children():
-		c.hide()
 	await get_tree().create_timer(1).timeout
 	if(int(winner_id) == int(my_multi_id)):
 		Global.WIN = false
 	else:
 		Global.WIN = true
 	var t = end_text_scene.instantiate()
-	t.win = Global.WIN
+	if((Global.WIN==false)or(Global.win==true)):
+		t.win = Global.WIN
+	else:
+		t.win = null
+	
 	add_child(t)
 	
 	

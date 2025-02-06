@@ -144,7 +144,7 @@ func check_game_over(goal_no):
 	var winner
 	
 	## the api call can be done somewhere here
-	
+
 	if(player_scores[0]>=Global.GOALS_TO_WIN):
 		winner = connected_players[0]
 		rpc_id(0, "winner_info", winner)
