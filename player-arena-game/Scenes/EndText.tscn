@@ -1,18 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxrogqwg4rjs4"]
 
-[ext_resource type="FontFile" path="res://Assets/Fonts/Gumball Thick Wires.ttf" id="1_mjj8n"]
 [ext_resource type="Script" path="res://Scripts/cool_font.gd" id="1_rbi2n"]
+[ext_resource type="FontFile" uid="uid://bfa6q83yg3434" path="res://Assets/Fonts/Gumball Thick Wires.ttf" id="1_v2jfo"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_rbi2n")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_right = 1637.0
 offset_bottom = 800.0
-theme_override_fonts/normal_font = ExtResource("1_mjj8n")
+theme_override_fonts/normal_font = ExtResource("1_v2jfo")
 theme_override_font_sizes/bold_italics_font_size = 80
 theme_override_font_sizes/italics_font_size = 80
 theme_override_font_sizes/mono_font_size = 80
 theme_override_font_sizes/normal_font_size = 150
 theme_override_font_sizes/bold_font_size = 80
 bbcode_enabled = true
-script = ExtResource("1_rbi2n")
+text = "nothing"

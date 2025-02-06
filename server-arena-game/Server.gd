@@ -148,10 +148,12 @@ func check_game_over(goal_no):
 	if(player_scores[0]>=Global.GOALS_TO_WIN):
 		winner = connected_players[0]
 		rpc_id(0, "winner_info", winner)
+		await get_tree().create_timer(0.5).timeout
 		OS.kill(OS.get_process_id())
 	elif (player_scores[1]>=Global.GOALS_TO_WIN):
 		winner = connected_players[1]
 		rpc_id(0, "winner_info", winner)
+		await get_tree().create_timer(0.5).timeout
 		OS.kill(OS.get_process_id())
 
 @rpc

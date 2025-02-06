@@ -9,6 +9,7 @@ height = 176.0
 [node name="Player1" type="RigidBody2D" groups=["player"]]
 mass = 2.0
 gravity_scale = 0.0
+linear_damp = 1.0
 script = ExtResource("1_x28ll")
 metadata/_edit_horizontal_guides_ = [-75.0]
 

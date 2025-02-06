@@ -1,12 +1,15 @@
-extends RichTextLabel
+extends CanvasLayer
 
-var txt = "you win"
-# Called when the node enters the scene tree for the first time.
+var win = null
+var txt = null
+
+
 func _ready() -> void:
-	pass
+	if(win==false):
+		txt = "you lose"
+	if(win==true):
+		txt = "you win"
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.text = "[wave amp=120 freq=8]"+str(txt)+"[/wave]"
-	# self.text = "[tornado radius=15 freq=5]you win[/tornado]"
+	$RichTextLabel.text = "[wave amp=120 freq=8]"+str(txt)+"[/wave]"
