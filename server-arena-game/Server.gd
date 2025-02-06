@@ -96,6 +96,9 @@ func _on_player_connected(id):
 		rpc_id(int(c), "update_other_player_details", connected_players)
 	if(connected_players.size()>1):
 		reset_positions()
+		for c in get_children():
+			if(c.name=="Map"):
+				c.get_node("GameTimer").start()
 
 func _on_player_disconnected(id):
 	print("Player disconnected " + str(id))
@@ -144,7 +147,7 @@ func check_game_over(goal_no):
 	var winner
 	
 	## the api call can be done somewhere here
-
+	
 	if(player_scores[0]>=Global.GOALS_TO_WIN):
 		winner = connected_players[0]
 		rpc_id(0, "winner_info", winner)

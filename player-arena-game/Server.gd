@@ -270,16 +270,15 @@ func player_join_game_at_port(port):
 func winner_info(winner_id):
 	fade_out()
 	await get_tree().create_timer(1).timeout
-	if(int(winner_id) == int(my_multi_id)):
-		Global.WIN = false
+	if(winner_id!=null):
+		if(int(winner_id) == int(my_multi_id)):
+			Global.WIN = false
+		else:
+			Global.WIN = true
 	else:
-		Global.WIN = true
+		Global.WIN = null
 	var t = end_text_scene.instantiate()
-	if((Global.WIN==false)or(Global.win==true)):
-		t.win = Global.WIN
-	else:
-		t.win = null
-	
+	t.win = Global.WIN
 	add_child(t)
 	
 	
