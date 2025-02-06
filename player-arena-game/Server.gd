@@ -157,6 +157,7 @@ func reset_player_stat(id, stat):
 
 @rpc("authority","call_remote","reliable")
 func update_score_display(scorer_id):
+	get_parent().get_node("Lobby").get_node("woohoo").play()
 	if(int(scorer_id)==multiplayer.get_unique_id()):
 		get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OS").get_node("OS").get_node("OwnScore").text)+1)
 	else:

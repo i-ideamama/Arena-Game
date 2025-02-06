@@ -60,3 +60,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.name=="ball"):
 		var tween = get_tree().create_tween()
 		tween.tween_method(blink, 1.0,0.0,0.5)
+	if(area.name=="OtherPlayer"):
+		$grunt_sound.play()
