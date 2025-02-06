@@ -28,3 +28,7 @@ server-arena-game/assets/certs/development.key
 server-arena-game/assets/certs/development.key
 server-arena-game/assets/certs/development.key
 server-arena-game/assets/certs/development.crt
+lobby-manager/GameServer.sh
+lobby-manager/GameServer.sh
+lobby-manager/GameServer.x86_64
+lobby-manager/GameServer.x86_64
