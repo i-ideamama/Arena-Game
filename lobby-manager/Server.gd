@@ -198,6 +198,14 @@ func update_score_display(scorer_id):
 	pass
 
 @rpc
+func update_time_el():
+	pass
+	
+@rpc
+func update_time_el_on_player(t):
+	pass
+
+@rpc
 func do_the_fades():
 	pass
 

@@ -209,7 +209,15 @@ func despawn_orbs():
 			get_node("Map").call_deferred("remove_child", c)
 			c.queue_free()
 	rpc_id(0, "despawn_orbs_in_player")
+
+@rpc("authority","call_local","reliable")
+func update_time_el():
+	rpc_id(0,"update_time_el_on_player",Global.TIME_ELAPSED)
 	
+@rpc
+func update_time_el_on_player(t):
+	pass
+
 @rpc
 func despawn_orbs_in_player():
 	pass

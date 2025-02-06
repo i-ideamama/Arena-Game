@@ -180,8 +180,16 @@ func fade_in():
 	
 @rpc("authority","call_remote","reliable")
 func do_the_fades():
-	fade_in()
+	pass
+	#fade_in()
 
+@rpc
+func update_time_el():
+	pass
+	
+@rpc("authority","call_remote","reliable")
+func update_time_el_on_player(t):
+	get_parent().get_node("Lobby").get_node("elapsed_time").text=str(t)
 	
 	
 @rpc
@@ -239,8 +247,9 @@ func send_update_to_player_timer():
 
 @rpc("authority","call_remote","reliable")
 func update_player_timer():
-	Global.seconds_passed+=1
-	get_parent().get_node("Lobby").get_node("elapsed_time").text=str(Global.seconds_passed)
+	pass
+	#Global.seconds_passed+=1
+	#get_parent().get_node("Lobby").get_node("elapsed_time").text=str(Global.seconds_passed)
 
 ### STUFF FOR LOBBY MANAGEMENT ###
 
