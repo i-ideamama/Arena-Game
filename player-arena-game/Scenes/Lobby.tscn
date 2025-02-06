@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwsf0dhtjb1l3"]
+[gd_scene load_steps=10 format=3 uid="uid://dwsf0dhtjb1l3"]
 
 [ext_resource type="Script" path="res://Scripts/lobby.gd" id="1_jald8"]
 [ext_resource type="FontFile" uid="uid://cfxxwgg737xhd" path="res://Assets/Fonts/upheavtt.ttf" id="2_3y6tv"]
 [ext_resource type="Texture2D" uid="uid://dsn1fvpw6n03t" path="res://Assets/football-pitch.png" id="2_q1abf"]
 [ext_resource type="Texture2D" uid="uid://ctx8i28rw1e3k" path="res://Assets/field.png" id="4_dyptj"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/woohoo.wav" id="5_wkn5i"]
 
 [sub_resource type="Animation" id="Animation_3hd6w"]
 length = 0.001
@@ -240,6 +241,9 @@ offset_top = -42.0
 offset_right = 1139.0
 offset_bottom = 2408.0
 color = Color(0, 0, 0, 1)
+
+[node name="woohoo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wkn5i")
 
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Control2/ButtonContainer/VBoxContainer/LobbyManagerButton" to="." method="_on_lobby_manager_button_pressed"]
