@@ -197,7 +197,9 @@ func reset_player_stat(stat):
 func update_score_display(scorer_id):
 	pass
 
-
+@rpc
+func do_the_fades():
+	pass
 
 # sdfasdfads
 @rpc

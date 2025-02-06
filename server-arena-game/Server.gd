@@ -166,7 +166,11 @@ func reset_positions():
 			#c.set_deferred('get_node(str(connected_players[1])).move_body', c.get_node("SpawnLocations").get_node("2").global_position)
 			c.get_node(str(connected_players[1])).move_body(c.get_node("SpawnLocations").get_node("2").global_position)
 			c.get_node("ball").move_body(ball_reset_position)
+	rpc_id(0,"do_the_fades")
 
+@rpc
+func do_the_fades():
+	pass
 
 ## ABILITIES
 @rpc("authority", "call_local", "reliable")

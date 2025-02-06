@@ -10,6 +10,7 @@ var other_player = preload("res://Scenes/other_player.tscn")
 var player_s_pos = Vector2.ZERO
 var goal_scene = preload("res://Scenes/goal.tscn")
 var orb_scene = preload("res://Scenes/orb.tscn")
+var transition_scene = preload("res://Scenes/transition.tscn")
 
 var other_player_id
 
@@ -161,6 +162,28 @@ func update_score_display(scorer_id):
 	else:
 		get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text = str(int(get_parent().get_node("Lobby").get_node("Control2").get_node("OpS").get_node("OpS").get_node("OppScore").text)+1)
 
+func fade_out():
+	var t = transition_scene.instantiate()
+	add_child(t)
+	t.fout()
+	await get_tree().create_timer(1).timeout
+	remove_child(t)
+	t.queue_free()
+	
+func fade_in():
+	var t = transition_scene.instantiate()
+	add_child(t)
+	t.fin()
+	await get_tree().create_timer(1).timeout
+	remove_child(t)
+	t.queue_free()
+	
+@rpc("authority","call_remote","reliable")
+func do_the_fades():
+	fade_in()
+
+	
+	
 @rpc
 func spawn_orb():
 	pass
