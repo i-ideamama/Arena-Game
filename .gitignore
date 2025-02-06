@@ -32,3 +32,5 @@ lobby-manager/GameServer.sh
 lobby-manager/GameServer.sh
 lobby-manager/GameServer.x86_64
 lobby-manager/GameServer.x86_64
+server-arena-game/assets/certs/development.crt
+server-arena-game/assets/certs/development.key

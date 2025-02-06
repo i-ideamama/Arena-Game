@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2yv5xo4w381r"]
+[gd_scene load_steps=8 format=3 uid="uid://d2yv5xo4w381r"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_w683w"]
 [ext_resource type="PackedScene" uid="uid://qccbalaq8j2s" path="res://Scenes/trail.tscn" id="2_6geip"]
 [ext_resource type="Shader" path="res://Shaders/player.gdshader" id="2_hvokq"]
 [ext_resource type="Script" path="res://Scripts/object_trail.gd" id="3_jlk3e"]
-[ext_resource type="AudioStream" uid="uid://bnkmevnhr6ua7" path="res://Assets/Audio/grunt.wav" id="6_cfp00"]
 [ext_resource type="Texture2D" uid="uid://b4f3aoiwkt05c" path="res://Assets/player/player.png" id="6_kc4g5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iv75r"]
@@ -41,9 +40,6 @@ texture = ExtResource("6_kc4g5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hibr8")
-
-[node name="grunt_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_cfp00")
 
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="SizeTimer" to="." method="_on_size_timer_timeout"]
