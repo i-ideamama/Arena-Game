@@ -16,6 +16,9 @@ var player_scores = [0, 0]
 
 var ball_reset_position = Global.BALL_RESET_POSITION
 
+var  http_req : HTTPRequest
+var data_to_send = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
@@ -24,6 +27,7 @@ func _ready() -> void:
 	print('I am going to run on '+str(PORT))
 	setup_shit()
 	spawn_elements()
+	http_req = HTTPRequest.new()
 
 func setup_shit():
 	var server = WebSocketMultiplayerPeer.new()
@@ -144,7 +148,7 @@ func check_game_over(goal_no):
 		player_scores[0]+=1
 	elif(goal_no==0):
 		player_scores[1]+=1
-	var winner
+	var winner = null
 	
 	## the api call can be done somewhere here
 	
@@ -158,6 +162,12 @@ func check_game_over(goal_no):
 		rpc_id(0, "winner_info", winner)
 		await get_tree().create_timer(0.5).timeout
 		OS.kill(OS.get_process_id())
+	if(winner!=null):
+		data_to_send = ""
+		var url = "https://arena-app.crux-bphc.com/api/game/result"
+		var json = JSON.stringify(data_to_send)
+		var headers = ["Content-Type: application/json"]
+		http_req.request(url, headers, HTTPClient.METHOD_POST, json)
 
 @rpc
 func winner_info(winner_id):
